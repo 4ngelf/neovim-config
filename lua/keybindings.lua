@@ -3,6 +3,26 @@ require "helpers/keyboard"
 
 g.mapleader = ' '                                                                 -- Use Space, like key for alternative hotkeys
 
+-- Normal mode {{{
+nm("J", "mzJ`z")        -- Join Lines without moving the cursor
+nm("<C-u>", "<C-u>zz")  -- Scroll up with cursor in the middle
+nm("<C-d>", "<C-d>zz")  -- Scroll down with cursor in the middle
+nm("n", "nzz")          -- Next find with cursor in the middle
+nm("N", "Nzz")          -- Previous find with cursor in the middle
+
+nm("<leader>d", "\"+d") -- delete forward with system clipboard
+nm("<leader>D", "\"+D") -- delete backward with system clipboard
+nm("<leader>p", "\"+p") -- paste forward with system clipboard
+nm("<leader>P", "\"+P") -- paste backward with system clipboard
+nm("<leader>y", "\"+y") -- Yank forward with system clipboard
+nm("<leader>Y", "\"+Y") -- Yank backward with system clipboard
+-- }}}
+
+-- Visual mode {{{
+vm("J", ":m '>+1<CR>gv") -- Move selected line Down
+vm("K", ":m '<-2<CR>gv") -- Move selected line Up
+-- }}}
+
 -- LSP {{{
 nm('K', '<cmd>lua vim.lsp.buf.hover()<CR>' )                                      -- Hover object
 nm('ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')                                -- Code actions
@@ -23,23 +43,13 @@ nm('<leader>a', '<cmd>Telescope<CR>')                                           
 -- nm('<leader>t', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>')           -- Search for dynamic symbols
 -- }}}
 
+-- Neogit {{{
+nm('<leader>ng', "<cmd>Neogit<CR>")     -- Open Neogit
+-- }}}
+
 -- Trouble {{{
 nm('<leader>x', '<cmd>TroubleToggle<CR>')                                         -- Show all problems in project (with help of LSP)
 nm('gr', '<cmd>Trouble lsp_references<CR>')                                       -- Show use of object in project
--- }}}
-
--- Normal mode {{{
-nm("J", "mzJ`z")
-nm("<C-u>", "<C-u>zz")
-nm("<C-d>", "<C-d>zz")
-nm("n", "nzz")
-nm("N", "Nzz")
-
--- }}}
-
--- Visual mode {{{
-vm("J", ":m '>+1<CR>gv")
-vm("K", ":m '<-2<CR>gv")
 -- }}}
 
 -- Neo Tree {{{ 

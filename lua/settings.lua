@@ -30,7 +30,7 @@ opt.smartindent = true              -- Turn on smart indentation. See in the doc
 -- }}}
 
 -- Clipboard {{{
-opt.clipboard = 'unnamedplus' -- Use system clipboard
+-- opt.clipboard = 'unnamed' -- Use system clipboard
 opt.fixeol = true -- Turn on appending new line in the end of a file
 -- }}}
 
@@ -58,6 +58,7 @@ opt.wildmode = "longest:full,full"
 
 -- wrap {{{
 opt.wrap = false
+opt.termguicolors = true
 -- }}}
 
 -- Python {{{
