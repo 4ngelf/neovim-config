@@ -38,12 +38,13 @@ nm('gD', '<cmd>lua vim.lsp.buf.declaration()<cr>') -- Go to declaration
 -- }}}
 
 -- Telescope {{{
-nm('gd', '<cmd>Telescope lsp_definitions<CR>')      -- Goto declaration
-nm('<leader>ff', '<cmd>Telescope git_files<CR>')    -- Search for a file in project
-nm('<leader>fF', '<cmd>Telescope find_files<CR>')   -- Search for a file (ignoring git-ignore)
-nm('<leader>fb', '<cmd>Telescope git_branches<CR>') -- Show git branches
-nm('<leader>fg', '<cmd>Telescope live_grep<CR>')    -- Find a string in project
-nm('<leader>a', '<cmd>Telescope<CR>')               -- Show all commands
+nm('gd', '<cmd>Telescope lsp_definitions<CR>')       -- Goto declaration
+nm('<leader>ff', '<cmd>Telescope git_files<CR>')     -- Search for a file in project
+nm('<leader>fF', '<cmd>Telescope find_files<CR>')    -- Search for a file (ignoring git-ignore)
+nm('<leader>fb', '<cmd>Telescope git_branches<CR>')  -- Show git branches
+nm('<leader>fg', '<cmd>Telescope live_grep<CR>')     -- Find a string in project
+nm('<leader>fd', '<cmd>Telescope diagnostics<CR>')   -- Show diagnostics
+nm('<leader>fa', '<cmd>Telescope<CR>')               -- Show all commands
 -- nm('<leader>p', '<cmd>Telescope oldfiles<CR>')                                -- Show recent files
 -- nm('<leader>i', '<cmd>Telescope jumplist<CR>')                                -- Show jumplist (previous locations)
 -- nm('<leader>q', '<cmd>Telescope buffers<CR>')                                 -- Show all buffers
