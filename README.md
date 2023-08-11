@@ -38,6 +38,7 @@ You can use this template with the following command:
 - [lsp_zero.nvim](https://github.com/VonHeikemen/lsp-zero.nvim)
 - [telescope](https://github.com/nvim-telescope/telescope.nvim)
 - [lspkind](https://github.com/onsails/lspkind.nvim)
+- [Neogit](https://github.com/NeogitOrg/neogit)
 - [Git Signs](https://github.com/lewis6991/gitsigns.nvim)
 - [trouble.nvim](https://github.com/folke/trouble.nvim)
 - [Tree Sitter](https://github.com/tree-sitter/tree-sitter)
