@@ -8,30 +8,15 @@
 require "helpers/globals"
 
 return {
-  -- Mason {{{
-  {
-    "williamboman/mason.nvim",
-    build = ":MasonUpdate",
-    dependencies = {
-      "williamboman/mason-lspconfig.nvim",
-      "neovim/nvim-lspconfig",
-    },
-    config = function()
-      require "extensions.mason"
-    end
-  },
-  -- }}}
 
-  -- Neo Tree {{{
+  -- TreeSitter {{{
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-    },
-    config = function ()
-      require "extensions.neotree"
+    "nvim-treesitter/nvim-treesitter",
+    lazy = false,
+    build = ":TSUpdate",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      require "extensions.treesitter"
     end
   },
   -- }}}
@@ -39,7 +24,7 @@ return {
   -- Telescope {{{
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.1',
+    tag = '0.1.2',
     lazy = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -51,42 +36,28 @@ return {
   },
   -- }}}
 
-  -- CMP {{{
+  -- lsp_zero {{{
   {
-    'hrsh7th/nvim-cmp',
-    event = "InsertEnter",
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v2.x',
     dependencies = {
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-emoji',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
-      'hrsh7th/cmp-nvim-lua',
-      'rafamadriz/friendly-snippets',
+      -- LSP Support
+      {'neovim/nvim-lspconfig'},             -- Required
+      {'williamboman/mason.nvim'},           -- Optional
+      {'williamboman/mason-lspconfig.nvim'}, -- Optional
+      {'jose-elias-alvarez/null-ls.nvim'},   -- Optional
+      {'jay-babu/mason-null-ls.nvim'},       -- Optional      
+
+      -- Autocompletion
+      {'hrsh7th/nvim-cmp'},     -- Required
+      {'hrsh7th/cmp-nvim-lsp'}, -- Required
+      {'L3MON4D3/LuaSnip'},     -- Required
+      {'onsails/lspkind-nvim'},
     },
     config = function()
+      require "extensions.lsp_zero"
       require "extensions.cmp"
-    end
-  },
-  -- }}}
-
-  -- LSP Kind {{{
-  {
-    'onsails/lspkind-nvim',
-    lazy = true,
-    config = function()
-      require "extensions.lspkind"
-    end
-  },
-  -- }}}
-
-  -- Git Signs{{{
-  {
-    'lewis6991/gitsigns.nvim',
-    lazy = false,
-    config = function()
-      require "extensions.gitsigns"
+      require "extensions.null_ls"
     end
   },
   -- }}}
@@ -102,14 +73,36 @@ return {
   },
   -- }}}
 
-  -- TreeSitter {{{
+  -- neogit {{{
   {
-    "nvim-treesitter/nvim-treesitter",
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",         -- required
+      "nvim-telescope/telescope.nvim", -- optional
+      "sindrets/diffview.nvim",        -- optional
+    },
+    config = true
+  },
+  -- }}}
+
+  -- Git Signs{{{
+  {
+    'lewis6991/gitsigns.nvim',
     lazy = false,
-    build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile" },
     config = function()
-      require "extensions.treesitter"
+      require "extensions.gitsigns"
+    end
+  },
+  -- }}}
+
+  -- Theme: Catppuchin {{{
+  {
+    "catppuccin/nvim",
+    name = "catppuccin", 
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require "extensions.colorscheme.catppuccin"
     end
   },
   -- }}}
@@ -122,6 +115,54 @@ return {
       require "extensions.colorscheme.sonokai"
     end
   },
+  -- }}}
+
+  -- [Inactive] Mason {{{
+  -- {
+  --   "williamboman/mason.nvim",
+  --   build = ":MasonUpdate",
+  --   dependencies = {
+  --     "williamboman/mason-lspconfig.nvim",
+  --     "neovim/nvim-lspconfig",
+  --   },
+  --   config = function()
+  --     require "extensions.mason"
+  --   end
+  -- },
+  -- }}}
+
+  -- [Inactive] CMP {{{
+  -- {
+  --   'hrsh7th/nvim-cmp',
+  --   event = "InsertEnter",
+  --   dependencies = {
+  --     'L3MON4D3/LuaSnip',
+  --     'saadparwaiz1/cmp_luasnip',
+  --     'hrsh7th/cmp-nvim-lsp',
+  --     'hrsh7th/cmp-path',
+  --     'hrsh7th/cmp-emoji',
+  --     'hrsh7th/cmp-nvim-lsp-signature-help',
+  --     'hrsh7th/cmp-nvim-lua',
+  --     'rafamadriz/friendly-snippets',
+  --   },
+  --   config = function()
+  --     require "extensions.cmp"
+  --   end
+  -- },
+  -- }}}
+
+  -- [Inactive] Neo Tree {{{
+  -- {
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   branch = "v2.x",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "MunifTanjim/nui.nvim",
+  --   },
+  --   config = function ()
+  --     require "extensions.neotree"
+  --   end
+  -- },
   -- }}}
 
 }

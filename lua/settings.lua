@@ -6,22 +6,31 @@
 
 require "helpers/globals"
 
+-- Theme
+theme = "catppuccin-frappe"
+
 -- Set associating between turned on plugins and filetype
 cmd[[filetype plugin on]]
 
 -- Disable comments on pressing Enter
 cmd[[autocmd FileType * setlocal formatoptions-=cro]]
 
+
+-- Number and relative number {{{
+opt.number = true
+opt.relativenumber = true
+-- }}}
+
 -- Tabs {{{
 opt.expandtab = true                -- Use spaces by default
-opt.shiftwidth = 2                  -- Set amount of space characters, when we press "<" or ">"
-opt.tabstop = 2                     -- 1 tab equal 2 spaces
+opt.shiftwidth = 4                  -- Set amount of space characters, when we press "<" or ">"
+opt.tabstop = 4                     -- 1 tab equal to so much spaces.
 opt.smartindent = true              -- Turn on smart indentation. See in the docs for more info
 -- }}}
 
 -- Clipboard {{{
 opt.clipboard = 'unnamedplus' -- Use system clipboard
-opt.fixeol = false -- Turn off appending new line in the end of a file
+opt.fixeol = true -- Turn on appending new line in the end of a file
 -- }}}
 
 -- Folding {{{
@@ -33,6 +42,7 @@ opt.ignorecase = true               -- Ignore case if all characters in lower ca
 opt.joinspaces = false              -- Join multiple spaces in search
 opt.smartcase = true                -- When there is a one capital letter search for exact match
 opt.showmatch = true                -- Highlight search instances
+opt.hlsearch = false
 -- }}}
 
 -- Window {{{
@@ -43,6 +53,10 @@ opt.splitright = true               -- Put new vertical splits to right
 -- Wild Menu {{{
 opt.wildmenu = true
 opt.wildmode = "longest:full,full"
+-- }}}
+
+-- Python {{{
+g["python3_host_prog"] = fn.stdpath("config") .. "/py3nvim/bin/python3"
 -- }}}
 
 -- Default Plugins {{{

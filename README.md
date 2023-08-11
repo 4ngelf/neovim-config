@@ -35,12 +35,11 @@ You can use this template with the following command:
 # Packed Plugins
 
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
-- [mason.nvim](https://github.com/williamboman/mason.nvim)
-- [neo-tree](https://github.com/nvim-tree/nvim-tree.lua)
+- [lsp_zero.nvim](https://github.com/VonHeikemen/lsp-zero.nvim)
 - [telescope](https://github.com/nvim-telescope/telescope.nvim)
-- [cmp](https://github.com/hrsh7th/nvim-cmp)
 - [lspkind](https://github.com/onsails/lspkind.nvim)
 - [Git Signs](https://github.com/lewis6991/gitsigns.nvim)
 - [trouble.nvim](https://github.com/folke/trouble.nvim)
 - [Tree Sitter](https://github.com/tree-sitter/tree-sitter)
 - [sonokai](https://github.com/sainnhe/sonokai)
+- [Catppuchin](https://github.com/catppuccin/nvim)
