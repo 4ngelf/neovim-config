@@ -20,6 +20,9 @@ nm("<leader>Y", "\"+Y")    -- Yank backward with system clipboard
 nm("<leader>F", function() -- Format buffer with Formatter
   lsp.buf.format()
 end)
+
+nm("<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+nm("<leader>xx", "<cmd>silent !chmod +x %<CR>") -- Make current file executable
 -- }}}
 
 -- Visual mode {{{
