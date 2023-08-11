@@ -42,6 +42,7 @@ require("catppuccin").setup({
         cmp = true,
         gitsigns = true,
         treesitter = true,
+        neogit = true,
         nvimtree = false,
         notify = false,
         mini = false,

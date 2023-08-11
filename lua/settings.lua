@@ -7,7 +7,7 @@
 require "helpers/globals"
 
 -- Theme
-theme = "catppuccin-frappe"
+THEME = "catppuccin-frappe"
 
 -- Set associating between turned on plugins and filetype
 cmd[[filetype plugin on]]

@@ -42,22 +42,52 @@ return {
     branch = 'v2.x',
     dependencies = {
       -- LSP Support
-      {'neovim/nvim-lspconfig'},             -- Required
-      {'williamboman/mason.nvim'},           -- Optional
-      {'williamboman/mason-lspconfig.nvim'}, -- Optional
-      {'jose-elias-alvarez/null-ls.nvim'},   -- Optional
-      {'jay-babu/mason-null-ls.nvim'},       -- Optional      
+      { 'neovim/nvim-lspconfig' },             -- Required
+      { 'williamboman/mason.nvim' },           -- Optional
+      { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+      { 'jose-elias-alvarez/null-ls.nvim' },   -- Optional
+      { 'jay-babu/mason-null-ls.nvim' },       -- Optional
 
       -- Autocompletion
-      {'hrsh7th/nvim-cmp'},     -- Required
-      {'hrsh7th/cmp-nvim-lsp'}, -- Required
-      {'L3MON4D3/LuaSnip'},     -- Required
-      {'onsails/lspkind-nvim'},
+      {
+        'hrsh7th/nvim-cmp', -- Required
+        dependencies = { 'onsails/lspkind-nvim' },
+
+      },
+      { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+      { 'L3MON4D3/LuaSnip' },     -- Required
     },
     config = function()
       require "extensions.lsp_zero"
-      require "extensions.cmp"
       require "extensions.null_ls"
+      require "extensions.cmp"
+    end
+  },
+  -- }}}
+
+  -- Neo Tree {{{
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    config = function()
+      require "extensions.neotree"
+    end
+  },
+  -- }}}
+
+  -- lualine {{{
+  {
+    'nvim-lualine/lualine.nvim',
+    lazy = false,
+    dependencies = {
+      'nvim-tree/nvim-web-devicons'
+    },
+    config = function()
+      require "extensions.lualine"
     end
   },
   -- }}}
@@ -66,7 +96,7 @@ return {
   {
     "folke/trouble.nvim",
     lazy = true,
-    dependencies = "kyazdani42/nvim-web-devicons",
+    dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
       require "extensions.trouble"
     end,
@@ -95,10 +125,17 @@ return {
   },
   -- }}}
 
+  -- editorconfig {{{
+  {
+    'editorconfig/editorconfig-vim',
+    lazy = false,
+  },
+  -- }}}
+
   -- Theme: Catppuchin {{{
   {
     "catppuccin/nvim",
-    name = "catppuccin", 
+    name = "catppuccin",
     lazy = false,
     priority = 1000,
     config = function()
@@ -111,7 +148,7 @@ return {
   {
     "sainnhe/sonokai",
     lazy = false,
-    config = function ()
+    config = function()
       require "extensions.colorscheme.sonokai"
     end
   },
@@ -147,20 +184,6 @@ return {
   --   },
   --   config = function()
   --     require "extensions.cmp"
-  --   end
-  -- },
-  -- }}}
-
-  -- [Inactive] Neo Tree {{{
-  -- {
-  --   "nvim-neo-tree/neo-tree.nvim",
-  --   branch = "v2.x",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "MunifTanjim/nui.nvim",
-  --   },
-  --   config = function ()
-  --     require "extensions.neotree"
   --   end
   -- },
   -- }}}
