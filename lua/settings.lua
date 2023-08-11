@@ -16,9 +16,10 @@ cmd[[filetype plugin on]]
 cmd[[autocmd FileType * setlocal formatoptions-=cro]]
 
 
--- Number and relative number {{{
+-- Scrolling {{{
 opt.number = true
 opt.relativenumber = true
+opt.scrolloff = 8
 -- }}}
 
 -- Tabs {{{
@@ -53,6 +54,10 @@ opt.splitright = true               -- Put new vertical splits to right
 -- Wild Menu {{{
 opt.wildmenu = true
 opt.wildmode = "longest:full,full"
+-- }}}
+
+-- wrap {{{
+opt.wrap = false
 -- }}}
 
 -- Python {{{
