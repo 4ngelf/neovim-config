@@ -6,10 +6,7 @@
 
 local template = require("template")
 
-grep_program = "rg"
-if not vim.fn.executable(grep_program) then
-  grep_program = "grep"
-end
+grep_program = vim.fn.executable(grep_program) and "rg" or "grep"
 
 local gitconfig_path = "$HOME/.gitconfig"
 local git_author = "[[user]]"
@@ -21,7 +18,7 @@ if vim.fn.filereadable(gitconfig_path) then
 end
 
 template.setup({
-  temp_dir = vim.fn.stdpath("config") .. "templates",
+  temp_dir = vim.fn.stdpath("config") .. "/templates",
   author = git_author,
   email = git_email,
 })
