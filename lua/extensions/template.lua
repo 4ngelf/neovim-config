@@ -25,5 +25,3 @@ template.setup({
   author = git_author,
   email = git_email,
 })
-
-

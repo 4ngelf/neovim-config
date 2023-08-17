@@ -4,11 +4,11 @@
 ]]
 
 -- Bootsraping plugin manager
-require "lazy-bootstrap"
+require("lazy-bootstrap")
 
 -- Settings
-require "settings"
-require "keybindings"
+require("settings")
+require("keybindings")
 
 -- Plugin management {{{
 local lazy = require("lazy")

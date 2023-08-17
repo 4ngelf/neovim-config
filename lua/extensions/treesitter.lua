@@ -3,7 +3,7 @@
   Description: Configuration of tree-sitter
   See: https://github.com/tree-sitter/tree-sitter
 ]]
-require'nvim-treesitter.configs'.setup {
+require("nvim-treesitter.configs").setup({
 
   -- Needed parsers
   ensure_installed = {
@@ -13,7 +13,7 @@ require'nvim-treesitter.configs'.setup {
     "javascript",
     "go",
     "python",
-    "rust"
+    "rust",
   },
 
   -- Install all parsers synchronously
@@ -30,5 +30,5 @@ require'nvim-treesitter.configs'.setup {
     -- Disabling indentation for all files
     enable = false,
     disable = {},
-  }
-}
+  },
+})
