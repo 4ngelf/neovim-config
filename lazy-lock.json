@@ -24,5 +24,6 @@
   "project.nvim": { "branch": "main", "commit": "8c6bad7d22eef1b71144b401c9f74ed01526a4fb" },
   "sonokai": { "branch": "master", "commit": "17308ee6d9c764bfc1e0fa97213e7a99701b4144" },
   "telescope.nvim": { "branch": "master", "commit": "776b509f80dd49d8205b9b0d94485568236d1192" },
+  "template.nvim": { "branch": "main", "commit": "0b9a02148fd2b7832f801e5ebb40684d4eea4ead" },
   "trouble.nvim": { "branch": "main", "commit": "40aad004f53ae1d1ba91bcc5c29d59f07c5f01d3" }
 }

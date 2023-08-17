@@ -5,7 +5,7 @@
   See: https://github.com/folke/lazy.nvim
 ]]
 
-require "helpers/globals"
+require("helpers/globals")
 
 return {
 
@@ -16,52 +16,55 @@ return {
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     config = function()
-      require "extensions.treesitter"
-    end
+      require("extensions.treesitter")
+    end,
   },
   -- }}}
 
   -- Telescope {{{
   {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.2',
-    lazy = false,
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.2",
+    lazy = true,
+    cmd = "Telescope",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "ahmedkhalf/project.nvim",
+
+      -- extensions
+      "glepnir/template.nvim",
     },
     config = function()
-      require "extensions.telescope"
-    end
+      require("extensions.telescope")
+    end,
   },
   -- }}}
 
   -- lsp_zero {{{
   {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v2.x',
+    "VonHeikemen/lsp-zero.nvim",
+    branch = "v2.x",
     dependencies = {
       -- LSP Support
-      { 'neovim/nvim-lspconfig' },             -- Required
-      { 'williamboman/mason.nvim' },           -- Optional
-      { 'williamboman/mason-lspconfig.nvim' }, -- Optional
-      { 'jose-elias-alvarez/null-ls.nvim' },   -- Optional
-      { 'jay-babu/mason-null-ls.nvim' },       -- Optional
+      { "neovim/nvim-lspconfig" }, -- Required
+      { "williamboman/mason.nvim" }, -- Optional
+      { "williamboman/mason-lspconfig.nvim" }, -- Optional
+      { "jose-elias-alvarez/null-ls.nvim" }, -- Optional
+      { "jay-babu/mason-null-ls.nvim" }, -- Optional
 
       -- Autocompletion
       {
-        'hrsh7th/nvim-cmp', -- Required
-        dependencies = { 'onsails/lspkind-nvim' },
-
+        "hrsh7th/nvim-cmp", -- Required
+        dependencies = { "onsails/lspkind-nvim" },
       },
-      { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-      { 'L3MON4D3/LuaSnip' },     -- Required
+      { "hrsh7th/cmp-nvim-lsp" }, -- Required
+      { "L3MON4D3/LuaSnip" }, -- Required
     },
     config = function()
-      require "extensions.lsp_zero"
-      require "extensions.null_ls"
-      require "extensions.cmp"
-    end
+      require("extensions.lsp_zero")
+      require("extensions.null_ls")
+      require("extensions.cmp")
+    end,
   },
   -- }}}
 
@@ -69,26 +72,28 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "3.x",
+    lazy = true,
+    cmd = "Neotree",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
     },
     config = function()
-      require "extensions.neotree"
-    end
+      require("extensions.neotree")
+    end,
   },
   -- }}}
 
   -- lualine {{{
   {
-    'nvim-lualine/lualine.nvim',
+    "nvim-lualine/lualine.nvim",
     lazy = false,
     dependencies = {
-      'nvim-tree/nvim-web-devicons'
+      "nvim-tree/nvim-web-devicons",
     },
     config = function()
-      require "extensions.lualine"
-    end
+      require("extensions.lualine")
+    end,
   },
   -- }}}
 
@@ -96,9 +101,10 @@ return {
   {
     "folke/trouble.nvim",
     lazy = true,
+    cmd = "Trouble",
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
-      require "extensions.trouble"
+      require("extensions.trouble")
     end,
   },
   -- }}}
@@ -106,30 +112,43 @@ return {
   -- neogit {{{
   {
     "NeogitOrg/neogit",
+    lazy = true,
+    cmd = { "Neogit", "NeogitMessages", "NeogitResetState" },
     dependencies = {
-      "nvim-lua/plenary.nvim",         -- required
+      "nvim-lua/plenary.nvim", -- required
       "nvim-telescope/telescope.nvim", -- optional
-      "sindrets/diffview.nvim",        -- optional
+      "sindrets/diffview.nvim", -- optional
     },
-    config = true
+    config = true,
   },
   -- }}}
 
   -- Git Signs{{{
   {
-    'lewis6991/gitsigns.nvim',
+    "lewis6991/gitsigns.nvim",
     lazy = false,
     config = function()
-      require "extensions.gitsigns"
-    end
+      require("extensions.gitsigns")
+    end,
   },
   -- }}}
 
   -- editorconfig {{{
   {
-    'editorconfig/editorconfig-vim',
+    "editorconfig/editorconfig-vim",
     lazy = false,
   },
+  -- }}}
+
+  -- template {{{
+  {
+    "glepnir/template.nvim",
+    cmd = { "Template", "TemProject" },
+    config = function()
+      require("extensions.template")
+    end,
+  },
+
   -- }}}
 
   -- Theme: Catppuchin {{{
@@ -139,8 +158,8 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      require "extensions.colorscheme.catppuccin"
-    end
+      require("extensions.colorscheme.catppuccin")
+    end,
   },
   -- }}}
 
@@ -149,8 +168,8 @@ return {
     "sainnhe/sonokai",
     lazy = false,
     config = function()
-      require "extensions.colorscheme.sonokai"
-    end
+      require("extensions.colorscheme.sonokai")
+    end,
   },
   -- }}}
 
@@ -187,7 +206,6 @@ return {
   --   end
   -- },
   -- }}}
-
 }
 
 -- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua foldmethod=marker foldlevelstart=0 foldlevel=0

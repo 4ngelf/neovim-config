@@ -21,8 +21,12 @@ nm("<leader>F", function() -- Format buffer with Formatter
   lsp.buf.format()
 end)
 
+-- Sustitute all coincidences with word under cursor
 nm("<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 nm("<leader>xx", "<cmd>silent !chmod +x %<CR>") -- Make current file executable
+
+nm("<leader>zo", "<cmd>%foldopen<CR>")  -- Open all folds
+nm("<leader>zc", "<cmd>%foldclose<CR>")  -- Close all folds
 -- }}}
 
 -- Visual mode {{{
@@ -38,13 +42,13 @@ nm('gD', '<cmd>lua vim.lsp.buf.declaration()<cr>') -- Go to declaration
 -- }}}
 
 -- Telescope {{{
-nm('gd', '<cmd>Telescope lsp_definitions<CR>')       -- Goto declaration
-nm('<leader>ff', '<cmd>Telescope git_files<CR>')     -- Search for a file in project
-nm('<leader>fF', '<cmd>Telescope find_files<CR>')    -- Search for a file (ignoring git-ignore)
-nm('<leader>fb', '<cmd>Telescope git_branches<CR>')  -- Show git branches
-nm('<leader>fg', '<cmd>Telescope live_grep<CR>')     -- Find a string in project
-nm('<leader>fd', '<cmd>Telescope diagnostics<CR>')   -- Show diagnostics
-nm('<leader>fa', '<cmd>Telescope<CR>')               -- Show all commands
+nm('gd', '<cmd>Telescope lsp_definitions<CR>')      -- Goto declaration
+nm('<leader>f', '<cmd>Telescope find_files<CR>')    -- Search for a file (ignoring git-ignore)
+nm('<leader>ff', '<cmd>Telescope git_files<CR>')    -- Search for a file in project
+nm('<leader>fb', '<cmd>Telescope git_branches<CR>') -- Show git branches
+nm('<leader>fg', '<cmd>Telescope live_grep<CR>')    -- Find a string in project
+nm('<leader>fd', '<cmd>Telescope diagnostics<CR>')  -- Show diagnostics
+nm('<leader>fa', '<cmd>Telescope<CR>')              -- Show all commands
 -- nm('<leader>p', '<cmd>Telescope oldfiles<CR>')                                -- Show recent files
 -- nm('<leader>i', '<cmd>Telescope jumplist<CR>')                                -- Show jumplist (previous locations)
 -- nm('<leader>q', '<cmd>Telescope buffers<CR>')                                 -- Show all buffers
@@ -56,12 +60,11 @@ nm('<leader>ng', "<cmd>Neogit<CR>") -- Open Neogit
 -- }}}
 
 -- Trouble {{{
-nm('<leader>x', '<cmd>TroubleToggle<CR>')   -- Show all problems in project (with help of LSP)
-nm('gr', '<cmd>Trouble lsp_references<CR>') -- Show use of object in project
+nm('gr', '<cmd>TroubleToggle<CR>')   -- Show all problems in project (with help of LSP)
 -- }}}
 
 -- Neo Tree {{{
-nm('<leader>nt', '<cmd>Neotree focus toggle<CR>')                                        -- Toggle file explorer
+nm('<leader>nt', '<cmd>Neotree focus toggle<CR>') -- Toggle file explorer
 -- }}}
 
 -- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua foldmethod=marker foldlevelstart=0 foldlevel=0

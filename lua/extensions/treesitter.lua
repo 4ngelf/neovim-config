@@ -7,6 +7,7 @@ require'nvim-treesitter.configs'.setup {
 
   -- Needed parsers
   ensure_installed = {
+    "ini",
     "lua",
     "typescript",
     "javascript",
