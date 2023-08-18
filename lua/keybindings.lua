@@ -43,8 +43,22 @@ nm("gD", "<cmd>lua vim.lsp.buf.declaration()<cr>") -- Go to declaration
 
 -- Telescope {{{
 nm("gd", "<cmd>Telescope lsp_definitions<CR>") -- Goto declaration
-nm("<leader>f", "<cmd>Telescope find_files<CR>") -- Search for a file (ignoring git-ignore)
-nm("<leader>ff", "<cmd>Telescope git_files<CR>") -- Search for a file in project
+nm("<leader>f", function() -- Search for a file (ignoring .gitignore)
+  local items = fn.systemlist("fd -H -I -E '/.git' -tf")
+  table.sort(items, function(a, b)
+    return a > b
+  end)
+  require("telescope.builtin").find_files({ search_dirs = items })
+end)
+
+nm("<leader>ff", function() -- Search for a file in project (with .gitignore)
+  local items = fn.systemlist("fd -H -E '/.git' -tf | head -n 4000")
+  table.sort(items, function(a, b)
+    return a > b
+  end)
+  require("telescope.builtin").find_files({ search_dirs = items })
+end)
+
 nm("<leader>fb", "<cmd>Telescope git_branches<CR>") -- Show git branches
 nm("<leader>fg", "<cmd>Telescope live_grep<CR>") -- Find a string in project
 nm("<leader>fd", "<cmd>Telescope diagnostics<CR>") -- Show diagnostics
