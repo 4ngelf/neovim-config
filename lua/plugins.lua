@@ -32,7 +32,7 @@ return {
       "ahmedkhalf/project.nvim",
 
       -- extensions
-      "glepnir/template.nvim",
+      -- "glepnir/template.nvim",
     },
     config = function()
       require("extensions.telescope")
@@ -101,7 +101,7 @@ return {
   {
     "folke/trouble.nvim",
     lazy = true,
-    cmd = "Trouble",
+    cmd = { "Trouble", "TroubleToggle", "TroubleRefresh" },
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
       require("extensions.trouble")
@@ -140,15 +140,14 @@ return {
   },
   -- }}}
 
-  -- template {{{
-  {
-    "glepnir/template.nvim",
-    cmd = { "Template", "TemProject" },
-    config = function()
-      require("extensions.template")
-    end,
-  },
-
+  -- [inactive] template {{{
+  --  {
+  --    "glepnir/template.nvim",
+  --    cmd = { "Template", "TemProject" },
+  --    config = function()
+  --      require("extensions.template")
+  --    end,
+  --  },
   -- }}}
 
   -- Theme: Catppuchin {{{
