@@ -24,7 +24,7 @@ opt.scrolloff = 8
 -- Tabs {{{
 opt.expandtab = true -- Use spaces by default
 opt.shiftwidth = 4 -- Set amount of space characters, when we press "<" or ">"
-opt.tabstop = 4 -- 1 tab equal to so much spaces.
+-- opt.tabstop = 4 -- 1 tab equal to so much spaces.
 opt.smartindent = true -- Turn on smart indentation. See in the docs for more info
 -- }}}
 
