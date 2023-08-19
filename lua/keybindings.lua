@@ -27,6 +27,13 @@ nm("<leader>xx", "<cmd>silent !chmod +x %<CR>") -- Make current file executable
 
 nm("<leader>zo", "<cmd>%foldopen<CR>") -- Open all folds
 nm("<leader>zc", "<cmd>%foldclose<CR>") -- Close all folds
+
+nm("<leader>hl", function () -- Change treesitter highlighting 
+  local bufn = vim.fn.bufnr("%")
+  local language = vim.fn.input("treesitter-highlighting: ")
+  vim.treesitter.stop(bufn)
+  vim.treesitter.start(bufn, language)
+end)
 -- }}}
 
 -- Visual mode {{{
@@ -63,6 +70,7 @@ nm("<leader>fb", "<cmd>Telescope git_branches<CR>") -- Show git branches
 nm("<leader>fg", "<cmd>Telescope live_grep<CR>") -- Find a string in project
 nm("<leader>fd", "<cmd>Telescope diagnostics<CR>") -- Show diagnostics
 nm("<leader>fa", "<cmd>Telescope<CR>") -- Show all commands
+
 -- nm('<leader>p', '<cmd>Telescope oldfiles<CR>')                                -- Show recent files
 -- nm('<leader>i', '<cmd>Telescope jumplist<CR>')                                -- Show jumplist (previous locations)
 -- nm('<leader>q', '<cmd>Telescope buffers<CR>')                                 -- Show all buffers
