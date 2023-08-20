@@ -29,6 +29,6 @@ require("nvim-treesitter.configs").setup({
   indent = {
     -- Disabling indentation for all files
     enable = false,
-    disable = {},
+    disable = { "python" },
   },
 })
