@@ -37,6 +37,8 @@ end)
 -- }}}
 
 -- Visual mode {{{
+vm('<leader>y', '"+y')   -- Copy selected text into system clipboard
+
 vm("J", ":m '>+1<CR>gv") -- Move selected line Down
 vm("K", ":m '<-2<CR>gv") -- Move selected line Up
 -- }}}
