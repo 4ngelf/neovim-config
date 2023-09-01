@@ -1,5 +1,5 @@
 --[[
-  File: plugins.lua
+  File: plugns.lua
   Description: This file needed for loading plugin list into lazy.nvim and loading plugins
   Info: Use <zo> and <zc> to open and close foldings
   See: https://github.com/folke/lazy.nvim
@@ -137,6 +137,19 @@ return {
   {
     "editorconfig/editorconfig-vim",
     lazy = false,
+  },
+  -- }}}
+
+  -- nvim-surround {{{
+  {
+    "kylechui/nvim-surround",
+    version = "v2.1.1",
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
   },
   -- }}}
 
