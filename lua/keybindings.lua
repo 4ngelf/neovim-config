@@ -26,7 +26,9 @@ end)
 
 -- Sustitute all coincidences with word under cursor
 nm("<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-nm("<leader>xx", "<cmd>silent !chmod +x %<CR>") -- Make current file executable
+
+nm("<leader>xx", "<cmd>silent !chmod +x %<CR>") -- Make current editing file executable
+nm("<leader>x", "<cmd>!%<CR>")                  -- Run current editing file
 
 nm("<leader>zo", "<cmd>%foldopen<CR>") -- Open all folds
 nm("<leader>zc", "<cmd>%foldclose<CR>") -- Close all folds
