@@ -1,4 +1,9 @@
 {
+    "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
     "diagnostics.disable": ["lowercase-global"],
-    "diagnostics.globals": ["vim"]
+    "diagnostics.globals": ["vim"],
+    "diagnostics.ignoredFiles": "Disable",
+    "workspace.ignoreDir": [
+        "templates/**"
+    ]
 }
