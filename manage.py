@@ -91,6 +91,8 @@ def add_plugin(short_url: str):
     with open(PLUGIN_DIR / filename, "wt") as f:
         f.write(contents)
 
+    print(f"Plugin {short_url} added!\nLocation: {PLUGIN_DIR/filename}")
+
 
 def get_argparser() -> ArgumentParser:
     parser = ArgumentParser(description="Manage tasks for neovim configuration.") # noqa
