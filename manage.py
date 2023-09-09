@@ -10,6 +10,9 @@ PLUGIN_DIR = BASE_DIR / "lua/plugins/extensions"
 TEMPLATES = {"extension": "lazy_plugin.lua"}
 
 
+# Tasker class {{{
+
+
 class Tasker:
     def __init__(self):
         self._tasks = []
@@ -22,18 +25,20 @@ class Tasker:
                 if key not in code.co_varnames:
                     raise Exception(f"{key} not in {func.__name__} function")
             if not docs:
-                for arg in code.co_varnames[:code.co_argcount]:
+                func_arguments = code.co_varnames[: code.co_argcount]
+                for arg in func_arguments:
                     arg = arg.replace("_", "-")
-                    docs[arg] = ''
+                    docs[arg] = ""
 
             meta = {
                 "func": func,
                 "name": func.__name__.replace("_", "-"),
                 "help": func.__doc__,
-                "args": docs
+                "args": docs,
             }
             __tasker__._tasks.append(meta)
             return func
+
         return decorator
 
     @property
@@ -46,17 +51,48 @@ class Tasker:
         for task in self._tasks:
             yield task
 
+    @property
+    def argparser(self) -> ArgumentParser:
+        parser = ArgumentParser(
+            description="Manage tasks for neovim configuration."
+        )  # noqa
+        subparsers = parser.add_subparsers(
+            title="commands", description="Available commands"
+        )  # noqa
+        for task in self.tasks:
+            task_parser = subparsers.add_parser(
+                task["name"], description=task["help"]
+            )  # noqa
+            task_parser.set_defaults(func=task["func"])
+            for arg, help in task["args"].items():
+                task_parser.add_argument(arg, help=help)
+
+        return parser
+
 
 __tasker__: Tasker = Tasker()
 
 
+# }}}
+
+
+# Utils {{{
+
+
 def template(template: str, context: dict, /) -> str:
     """Parse templates using the given context"""
+
     contents = ""
     with open(TEMPLATE_DIR / template, "r") as f:
         contents = f.read()
 
     return contents.format(**context)
+
+
+# }}}
+
+
+# Tasks {{{
 
 
 @Tasker.register()
@@ -74,7 +110,7 @@ def create_venv():
 
     version = run(
         [PYTHON_BIN / "python3", "-V"], capture_output=True, check=True
-    ).stdout  # noqa
+    ).stdout
 
     print(f"{version} venv created for nvim!")
 
@@ -84,7 +120,7 @@ def add_plugin(short_url: str):
     """Add plugin from template using
     short repository url as context"""
     name = short_url.split("/")[1]
-    filename = name.split(".")[0] + ".lua"
+    filename = name.replace("-", "_").split(".")[0] + ".lua"
     context = {"short_url": short_url, "name": name, "filename": filename}
     contents = template(TEMPLATES["extension"], context)
 
@@ -94,20 +130,11 @@ def add_plugin(short_url: str):
     print(f"Plugin {short_url} added!\nLocation: {PLUGIN_DIR/filename}")
 
 
-def get_argparser() -> ArgumentParser:
-    parser = ArgumentParser(description="Manage tasks for neovim configuration.") # noqa
-    subparsers = parser.add_subparsers(title="commands", description="Available commands") # noqa
-    for task in __tasker__.tasks:
-        task_parser = subparsers.add_parser(task["name"], description=task["help"]) # noqa
-        task_parser.set_defaults(func=task["func"])
-        for arg, help in task["args"].items():
-            task_parser.add_argument(arg, help=help)
-
-    return parser
+# }}}
 
 
 def main():
-    parser = get_argparser()
+    parser = __tasker__.argparser
     kwargs = vars(parser.parse_args())
     if not kwargs:
         parser.print_usage()
@@ -120,4 +147,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-# vim: syntax=python foldmethod=marker foldlevelstart=0 foldlevel=0
+# vim: tabstop=4 shiftwidth=4 expandtab syntax=python foldmethod=marker foldlevelstart=0 foldlevel=0 # noqa
