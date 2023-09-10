@@ -11,8 +11,6 @@ nm("n", "nzz")         -- Next find with cursor in the middle
 nm("N", "Nzz")         -- Previous find with cursor in the middle
 
 -- System clipboard {{{
-nm("<leader>d", '"+d') -- delete forward with system clipboard
-nm("<leader>D", '"+D') -- delete backward with system clipboard
 nm("<leader>p", '"+p') -- paste forward with system clipboard
 nm("<leader>P", '"+P') -- paste backward with system clipboard
 nm("<leader>y", '"+y') -- Yank forward with system clipboard
