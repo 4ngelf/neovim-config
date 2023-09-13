@@ -75,6 +75,7 @@ end)
 nm("<leader>fb", "<cmd>Telescope git_branches<CR>") -- Show git branches
 nm("<leader>fg", "<cmd>Telescope live_grep<CR>")    -- Find a string in project
 nm("<leader>fd", "<cmd>Telescope diagnostics<CR>")  -- Show diagnostics
+nm("<leader>fr", "<cmd>Telescope lsp_references<CR>")  -- Show references to symbol under cursor
 nm("<leader>fa", "<cmd>Telescope<CR>")              -- Show all commands
 
 -- nm('<leader>p', '<cmd>Telescope oldfiles<CR>')                                -- Show recent files
