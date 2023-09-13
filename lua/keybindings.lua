@@ -25,7 +25,7 @@ nm("<leader>s", lsp.buf.rename)  -- Substitute all references under cursor
 nm("<leader>S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 nm("<leader>xx", "<cmd>silent !chmod +x %<CR>") -- Make current editing file executable
-nm("<leader>x", "<cmd>!%<CR>")                  -- Run current editing file
+nm("<leader>x", "<cmd>!$(realpath %)<CR>")                  -- Run current editing file
 
 nm("<leader>zo", "<cmd>%foldopen<CR>")          -- Open all folds
 nm("<leader>zc", "<cmd>%foldclose<CR>")         -- Close all folds
