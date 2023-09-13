@@ -1,8 +1,17 @@
 {
     "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+    "runtime.version": "LuaJIT",
+    "runtime.path": [
+        "lua/?.lua",
+        "lua/?/init.lua"
+    ],
     "diagnostics.disable": ["lowercase-global"],
     "diagnostics.globals": ["vim"],
     "diagnostics.ignoredFiles": "Disable",
+    "workspace.checkThirdParty": false,
+    "workspace.library": [
+        "./lua"
+    ],
     "workspace.ignoreDir": [
         "templates/**"
     ]
