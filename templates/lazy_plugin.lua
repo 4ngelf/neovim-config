@@ -8,7 +8,7 @@
 local M = {{}}
 
 M[1] = "{short_url}" --  string?
-M.name = { name } --  string?
+M.name = "{name}" --  string?
 M.tag = "" --  string?
 M.lazy = true --  boolean?
 M.event = {{ }} --  string? or string[] or fun(self:LazyPlugin, event:string[]):string[]

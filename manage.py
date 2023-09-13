@@ -36,7 +36,7 @@ class Tasker:
                 "help": func.__doc__,
                 "args": docs,
             }
-            __tasker__._tasks.append(meta)
+            _tasker._tasks.append(meta)
             return func
 
         return decorator
@@ -55,14 +55,14 @@ class Tasker:
     def argparser(self) -> ArgumentParser:
         parser = ArgumentParser(
             description="Manage tasks for neovim configuration."
-        )  # noqa
+        )
         subparsers = parser.add_subparsers(
             title="commands", description="Available commands"
-        )  # noqa
+        )
         for task in self.tasks:
             task_parser = subparsers.add_parser(
                 task["name"], description=task["help"]
-            )  # noqa
+            )
             task_parser.set_defaults(func=task["func"])
             for arg, help in task["args"].items():
                 task_parser.add_argument(arg, help=help)
@@ -70,7 +70,7 @@ class Tasker:
         return parser
 
 
-__tasker__: Tasker = Tasker()
+_tasker: Tasker = Tasker()
 
 
 # }}}
@@ -110,7 +110,7 @@ def create_venv():
 
     version = run(
         [PYTHON_BIN / "python3", "-V"], capture_output=True, check=True
-    ).stdout
+    ).stdout.decode(encoding="utf-8").replace("\n", "")
 
     print(f"{version} venv created for nvim!")
 
@@ -134,7 +134,7 @@ def add_plugin(short_url: str):
 
 
 def main():
-    parser = __tasker__.argparser
+    parser = _tasker.argparser
     kwargs = vars(parser.parse_args())
     if not kwargs:
         parser.print_usage()
