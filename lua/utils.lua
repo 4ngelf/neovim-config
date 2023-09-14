@@ -4,11 +4,9 @@ description: utilities commands
 
 local M = {}
 
---[[ 
-Lazily execute a command or lua function after {plugin} loads
-- plugin(string): the name of the plugin set in Lazy configuration
-- callback(function): Lua function called after {plugin} loads.
-]]
+---Lazily execute a command or lua function after {plugin} loads
+---@param plugin string the name of the plugin set in Lazy configuration
+---@param callback function() Lua function called after {plugin} loads.
 function M.lazy_execute(plugin, callback)
   vim.api.nvim_create_autocmd("LazyLoad", {
     group = "lazy-execute",
@@ -23,6 +21,5 @@ function M.lazy_execute(plugin, callback)
     once = true
   })
 end
-
 
 return M
