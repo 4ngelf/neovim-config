@@ -4,9 +4,6 @@
   Spec-notes: All plugins should load on VeryLazy event.
 ]]
 
--- TODO: Make a global for this variable
-TRANSPARENT_BACKGROUND = true
-
 return {
   {
     "catppuccin/nvim",
