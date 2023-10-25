@@ -7,13 +7,13 @@
 require("helpers/globals")
 
 -- Theme
-THEME = "catppuccin-frappe"
+THEME = "catppuccin"
 
 -- Set associating between turned on plugins and filetype
 cmd([[filetype plugin on]])
 
 -- Disable comments on pressing Enter
-cmd([[autocmd FileType * setlocal formatoptions-=cro]])
+cmd([[autocmd FileType * setlocal formatoptions-=r]])
 
 -- Scrolling {{{
 opt.number = true

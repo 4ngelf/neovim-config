@@ -22,4 +22,10 @@ function M.lazy_execute(plugin, callback)
   })
 end
 
+---Verify if a certain plugin is installed
+---@param plugin string
+function M.has(plugin)
+  return require("lazy.core.config").spec.plugins[plugin] ~= nil
+end
+
 return M
