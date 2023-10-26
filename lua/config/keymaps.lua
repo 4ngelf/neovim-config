@@ -81,24 +81,4 @@ nm("ga", "<cmd>lua vim.lsp.buf.code_action()<CR>") -- Code actions
 nm("gR", "<cmd>lua vim.lsp.buf.rename()<CR>")      -- Rename an object
 nm("gD", "<cmd>lua vim.lsp.buf.declaration()<cr>") -- Go to declaration
 -- }}}
-
--- Telescope {{{
--- nm('<leader>p', '<cmd>Telescope oldfiles<CR>')                                -- Show recent files
--- nm('<leader>i', '<cmd>Telescope jumplist<CR>')                                -- Show jumplist (previous locations)
--- nm('<leader>q', '<cmd>Telescope buffers<CR>')                                 -- Show all buffers
--- nm('<leader>t', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>')           -- Search for dynamic symbols
--- }}}
-
--- Neogit {{{
-nm("<leader>ng", "<cmd>Neogit<CR>") -- Open Neogit
--- }}}
-
--- Trouble {{{
--- nm("gr", "<cmd>TroubleToggle<CR>") -- Show all problems in project (with help of LSP)
--- }}}
-
--- Neo Tree {{{
-nm("<leader>nt", "<cmd>Neotree focus toggle<CR>") -- Toggle file explorer
--- }}}
-
 -- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua foldmethod=marker foldlevelstart=0 foldlevel=0
