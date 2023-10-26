@@ -83,29 +83,6 @@ nm("gD", "<cmd>lua vim.lsp.buf.declaration()<cr>") -- Go to declaration
 -- }}}
 
 -- Telescope {{{
-nm("gd", "<cmd>Telescope lsp_definitions<CR>") -- Goto declaration
-nm("<leader>f", function()                     -- Search for a file (ignoring .gitignore)
-  local items = fn.systemlist("fd -H -I -E '/.git' -tf")
-  table.sort(items, function(a, b)
-    return a > b
-  end)
-  require("telescope.builtin").find_files({ search_dirs = items })
-end)
-
-nm("<leader>ff", function() -- Search for a file in project (with .gitignore)
-  local items = fn.systemlist("fd -H -E '/.git' -tf | head -n 4000")
-  table.sort(items, function(a, b)
-    return a > b
-  end)
-  require("telescope.builtin").find_files({ search_dirs = items })
-end)
-
-nm("<leader>fb", "<cmd>Telescope git_branches<CR>") -- Show git branches
-nm("<leader>fg", "<cmd>Telescope live_grep<CR>")    -- Find a string in project
-nm("<leader>fd", "<cmd>Telescope diagnostics<CR>")  -- Show diagnostics
-nm("<leader>fr", "<cmd>Telescope lsp_references<CR>")  -- Show references to symbol under cursor
-nm("<leader>fa", "<cmd>Telescope<CR>")              -- Show all commands
-
 -- nm('<leader>p', '<cmd>Telescope oldfiles<CR>')                                -- Show recent files
 -- nm('<leader>i', '<cmd>Telescope jumplist<CR>')                                -- Show jumplist (previous locations)
 -- nm('<leader>q', '<cmd>Telescope buffers<CR>')                                 -- Show all buffers
@@ -117,7 +94,7 @@ nm("<leader>ng", "<cmd>Neogit<CR>") -- Open Neogit
 -- }}}
 
 -- Trouble {{{
-nm("gr", "<cmd>TroubleToggle<CR>") -- Show all problems in project (with help of LSP)
+-- nm("gr", "<cmd>TroubleToggle<CR>") -- Show all problems in project (with help of LSP)
 -- }}}
 
 -- Neo Tree {{{
