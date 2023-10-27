@@ -46,7 +46,7 @@ nm("<leader>Y", '"+Y') -- Yank backward with system clipboard
 --- }}}
 
 -- Complex operations {{{
-nm("<leader>F", lsp.buf.format) -- Format buffer with Formatter
+-- nm("<leader>F", lsp.buf.format) -- Format buffer with Formatter
 
 nm("<leader>s", lsp.buf.rename)  -- Substitute all references under cursor
 -- Sustitute all coincidences with word under cursor
