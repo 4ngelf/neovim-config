@@ -12,24 +12,32 @@ return {
     cmd = "Telescope",
     dependencies = {
       "plenary.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
     keys = {
-      { "<leader>fa", "<cmd>Telescope<CR>", desc="Telescope commands" },
+      { "<leader>fa", "<cmd>Telescope<CR>", desc = "Telescope commands" },
       {
         "<leader>ff",
         "<cmd>Telescope find_files find_command=rg,--iglob,!.git,--hidden,--files<CR>",
-        desc="Find files (.gitignore)"
+        desc = "Find files (.gitignore)",
       },
       {
         "<leader>fF",
         "<cmd>Telescope find_files find_command=rg,--no-ignore,--hidden,--files<CR>",
-        desc="Find all files"
+        desc = "Find all files",
       },
-      { "<leader>fg", "<cmd>Telescope live_grep<CR>", desc="Live grep" },
-      { "<leader>fr", "<cmd>Telescope lsp_references<CR>", desc="Find references" },
-      { "<leader>fc", "<cmd>Telescope colorscheme enable_preview=true<CR>", desc="Preview colorschemes" },
-
+      { "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Live grep" },
+      { "<leader>fr", "<cmd>Telescope lsp_references<CR>", desc = "Find references" },
+      { "<leader>fc", "<cmd>Telescope colorscheme enable_preview=true<CR>", desc = "Preview colorschemes" },
     },
+    config = function()
+      local telescope = require("telescope")
+      telescope.setup({
+        extensions = {},
+      })
+
+      telescope.load_extension("fzf")
+    end,
   },
   --- }}}
 
@@ -64,7 +72,7 @@ return {
         -- ["<leader>x"] = { name = "+diagnostics/quickfix" },
       },
     },
-    config = function (_, opts)
+    config = function(_, opts)
       local wk = require("which-key")
       wk.setup(opts)
       wk.register(opts.defaults)
@@ -78,7 +86,7 @@ return {
     "folke/trouble.nvim",
     version = "^2.10.0",
     dependencies = {
-      "nvim-web-devicons"
+      "nvim-web-devicons",
     },
     cmd = { "TroubleToggle", "Trouble" },
     opts = { use_diagnostic_signs = true },
@@ -86,7 +94,6 @@ return {
       -- { "gr", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
       { "gr", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
     },
-
   },
   -- }}}
 
@@ -96,7 +103,7 @@ return {
     "NeogitOrg/neogit",
     cmd = { "Neogit", "NeogitMessages", "NeogitResetState" },
     keys = {
-      { "<leader>ug", "<cmd>Neogit<CR>", desc="Open Neogit"},
+      { "<leader>ug", "<cmd>Neogit<CR>", desc = "Open Neogit" },
     },
     dependencies = {
       "plenary.nvim",
