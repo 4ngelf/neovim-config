@@ -10,7 +10,7 @@ return {
     name = "catppuccin",
     version = "^1.4.0",
     event = "VeryLazy",
-    config = function (opts)
+    config = function ()
       require("catppuccin").setup({
         flavour = "frappe", -- latte, frappe, macchiato, mocha
         background = { -- :h background

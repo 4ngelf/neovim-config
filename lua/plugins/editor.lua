@@ -1,5 +1,5 @@
 --[[
-  Module: plugins.telescope
+  Module: plugins.editor
   Description: Plugins for TUIs like telescope, neogit, etc
 ]]
 
@@ -20,7 +20,7 @@ return {
         "<cmd>Telescope find_files find_command=rg,--iglob,!.git,--hidden,--files<CR>",
         desc="Find files (.gitignore)"
       },
-      { 
+      {
         "<leader>fF",
         "<cmd>Telescope find_files find_command=rg,--no-ignore,--hidden,--files<CR>",
         desc="Find all files"
@@ -83,10 +83,10 @@ return {
     cmd = { "TroubleToggle", "Trouble" },
     opts = { use_diagnostic_signs = true },
     keys = {
-      { "gr", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
-      { "gR", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
+      -- { "gr", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
+      { "gr", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
     },
-    
+
   },
   -- }}}
 

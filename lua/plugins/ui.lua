@@ -20,6 +20,16 @@ return {
     end,
   },
   -- }}}
+
+  -- Git blame
+  -- gitsigns {{{
+  {
+    "lewis6991/gitsigns.nvim",
+    event = { "BufReadPost" },
+    config = true,
+
+  },
+  -- }}}
 }
 
 -- vim: foldmethod=marker foldmarker={{{,}}}
