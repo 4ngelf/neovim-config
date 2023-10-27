@@ -15,6 +15,7 @@ return {
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
     keys = {
+      -- keys {{{
       { "<leader>fa", "<cmd>Telescope<CR>", desc = "Telescope commands" },
       {
         "<leader>ff",
@@ -29,14 +30,50 @@ return {
       { "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Live grep" },
       { "<leader>fr", "<cmd>Telescope lsp_references<CR>", desc = "Find references" },
       { "<leader>fc", "<cmd>Telescope colorscheme enable_preview=true<CR>", desc = "Preview colorschemes" },
+      -- }}}
     },
     config = function()
+      -- config {{{
       local telescope = require("telescope")
       telescope.setup({
+        defaults = {
+          preview = {
+            mime_hook = function(filepath, bufnr, opts)
+              local is_image = function(path)
+                local image_extensions = { "png", "jpg", "svg" } -- Supported image formats
+                local split_path = vim.split(path:lower(), ".", { plain = true })
+                local extension = split_path[#split_path]
+                return vim.tbl_contains(image_extensions, extension)
+              end
+              if is_image(filepath) then
+                local term = vim.api.nvim_open_term(bufnr, {})
+                local function send_output(_, data, _)
+                  for _, d in ipairs(data) do
+                    vim.api.nvim_chan_send(term, d .. "\r\n")
+                  end
+                end
+                local h = vim.api.nvim_win_get_height(opts.winid)
+                local w = vim.api.nvim_win_get_width(opts.winid)
+                vim.fn.jobstart({
+                  "chafa",
+                  "--size=" .. w .. "x" .. h,
+                  filepath,
+                }, { on_stdout = send_output, stdout_buffered = true, pty = true })
+              else
+                require("telescope.previewers.utils").set_preview_message(
+                  bufnr,
+                  opts.winid,
+                  "Binary cannot be previewed"
+                )
+              end
+            end,
+          },
+        },
         extensions = {},
       })
 
       telescope.load_extension("fzf")
+      -- }}}
     end,
   },
   --- }}}
@@ -61,7 +98,10 @@ return {
         ["["] = { name = "+prev" },
         ["<leader>c"] = { name = "+code" },
         ["<leader>f"] = { name = "+file/find" },
-        ["<leader>u"] = { name = "+ui" },
+        ["<leader>u"] = {
+          name = "+ui",
+          l = { "<cmd>Lazy<CR>", "Lazy.nvim" },
+        },
         -- ["<leader><tab>"] = { name = "+tabs" },
         -- ["<leader>b"] = { name = "+buffer" },
         -- ["<leader>g"] = { name = "+git" },
@@ -103,7 +143,7 @@ return {
     "NeogitOrg/neogit",
     cmd = { "Neogit", "NeogitMessages", "NeogitResetState" },
     keys = {
-      { "<leader>ug", "<cmd>Neogit<CR>", desc = "Open Neogit" },
+      { "<leader>ug", "<cmd>Neogit<CR>", desc = "Neogit" },
     },
     dependencies = {
       "plenary.nvim",
@@ -113,6 +153,35 @@ return {
     config = true,
   },
   -- }}}
+
+  -- File explorer.
+  -- NOTE: I chose nnn over neotree because nnn is my default terminal file explorer
+  -- nnn {{{
+  {
+    "luukvbaal/nnn.nvim",
+    cmd = { "NnnPicker" },
+    keys = {
+      { "<leader>un", "<cmd>NnnPicker<CR>", desc = "nnn file explorer" },
+    },
+    config = function()
+      require("nnn").setup({
+        picker = {
+          cmd = "nnn", -- command override (-p flag is implied)
+          style = {
+            width = 0.9, -- percentage relative to terminal size when < 1, absolute otherwise
+            height = 0.8, -- ^
+            xoffset = 0.5, -- ^
+            yoffset = 0.5, -- ^
+            border = "rounded", -- border decoration for example "rounded"(:h nvim_open_win)
+          },
+          session = "shared",
+          tabs = false, -- separate nnn instance per tab
+          fullscreen = false, -- whether to fullscreen picker window when current tab is empty
+        },
+      })
+    end,
+  },
+  -- }}}
 }
 
--- vim: foldmethod=marker foldmarker={{{,}}}
+-- vim: foldmethod=marker foldmarker={{{,}}} foldlevelstart=1

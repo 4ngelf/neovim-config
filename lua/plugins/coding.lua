@@ -1,6 +1,6 @@
 --[[
   Module: plugins.coding.completion
-  Description: Plugins for completion and intellisense features
+  Description: Plugins to aid in coding experience
 ]]
 
 return {}
