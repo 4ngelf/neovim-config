@@ -8,7 +8,7 @@ return {
   -- nvim-lspconfig {{{
   {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile" },
     cmd = { "LspInstall", "LspInfo" },
     dependencies = {
       "mason.nvim",
@@ -68,7 +68,7 @@ return {
   -- null-ls {{{
   {
     "jose-elias-alvarez/null-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       "plenary.nvim",
       "mason.nvim",
