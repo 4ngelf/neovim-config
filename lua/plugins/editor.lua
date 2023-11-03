@@ -132,7 +132,7 @@ return {
     opts = { use_diagnostic_signs = true },
     keys = {
       -- { "gr", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
-      { "gr", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
+      { "gr", "<cmd>TroubleToggle<cr>", desc = "Workspace Diagnostics (Trouble)" },
     },
   },
   -- }}}
@@ -166,7 +166,7 @@ return {
     config = function()
       require("nnn").setup({
         picker = {
-          cmd = "nnn", -- command override (-p flag is implied)
+          cmd = "nnn -H", -- command override (-p flag is implied)
           style = {
             width = 0.9, -- percentage relative to terminal size when < 1, absolute otherwise
             height = 0.8, -- ^

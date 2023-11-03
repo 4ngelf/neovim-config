@@ -8,7 +8,7 @@ return {
   -- nvim-lspconfig {{{
   {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "BufReadPre", "BufNewFile" },
     cmd = { "LspInstall", "LspInfo" },
     dependencies = {
       "mason.nvim",
@@ -16,6 +16,7 @@ return {
       { "folke/neodev.nvim", opts = {} },
     },
     config = function()
+      -- config {{{
       vim.api.nvim_create_autocmd("LspAttach", {
         desc = "LSP actions",
         callback = function(event)
@@ -26,7 +27,7 @@ return {
           vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
           vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
           vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
-          vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+          -- vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
           vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
           vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
 
@@ -36,22 +37,37 @@ return {
         end,
       })
 
-      require("neodev").setup({})
+      -- require("neodev").setup({})
 
-      require("mason-lspconfig").setup({
+      local lspconfig = require("lspconfig")
+      local mason_lspconfig = require("mason-lspconfig")
+      local servers = mason_lspconfig.get_installed_servers()
+
+      local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+      local lsp_capabilities = vim.tbl_deep_extend(
+        "force",
+        {},
+        vim.lsp.protocol.make_client_capabilities(),
+        has_cmp and cmp_nvim_lsp.default_capabilities() or {}
+      )
+
+      local setup = function(server_name)
+        lspconfig[server_name].setup({
+          capabilities = lsp_capabilities,
+        })
+      end
+
+      mason_lspconfig.setup({
         ensure_installed = {
           "bashls",
           "dockerls",
           "jsonls",
           "lua_ls",
           "ruff_lsp",
+          "pyright",
           "rust_analyzer",
         },
-        handlers = {
-          function(server_name)
-            require("lspconfig")[server_name].setup({})
-          end,
-        },
+        handlers = { setup },
         -- If required put custom server configuration below
         -- lua_ls = function()
         --   require('lspconfig').lua_ls.setup({
@@ -60,6 +76,15 @@ return {
         --   })
         -- end,
       })
+
+      --[[
+      for _, server in ipairs(servers) do
+        lspconfig[server].setup({
+          capabilities = lsp_capabilities,
+        })
+      end
+      ]]
+      -- }}}
     end,
   },
   -- }}}
@@ -68,7 +93,7 @@ return {
   -- null-ls {{{
   {
     "jose-elias-alvarez/null-ls.nvim",
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "plenary.nvim",
       "mason.nvim",
@@ -113,8 +138,10 @@ return {
     keys = {
       { "<leader>um", "<cmd>Mason<CR>", desc = "Mason" },
     },
+    ---@class MasonSettings
     opts = {
       PATH = "append",
+      _VERSION,
     },
     config = true,
   },
