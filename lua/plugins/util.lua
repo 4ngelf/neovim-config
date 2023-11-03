@@ -5,7 +5,7 @@
 
 return {
   -- Discord Rich precense
-  -- precnese.nvim {{{
+  -- presence.nvim {{{
   {
     "andweeb/presence.nvim",
     opts = {
