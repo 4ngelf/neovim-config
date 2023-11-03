@@ -11,8 +11,8 @@ return {
     version = false,
     event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
-      -- TODO: Sort cmp-nvim-lsp entries with arguments first
       -- TODO: Configure snippets
+      -- TODO: Install some autoclose pair plugin
       -- TODO: install surround.nvim
       -- TODO: Deactivate pyright diagnostics and leave that to ruff
 
@@ -73,12 +73,14 @@ return {
         mapping = {
           ["<CR>"] = cmp.mapping.confirm({ select = false, behavior = cmp.ConfirmBehavior.Replace }),
           ["<Esc>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
+            local is_selected = cmp.get_active_entry() ~= nil
+            if cmp.visible() and is_selected then
               cmp.abort()
             else
               fallback()
             end
           end, { "i" }),
+          ["<C-Space>"] = cmp.mapping.complete(),
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
@@ -153,6 +155,10 @@ return {
 
       cmp.setup.cmdline("/", search_opts)
       cmp.setup.cmdline("?", search_opts)
+      cmp.setup.cmdline(":", { enabled = false })
+
+      -- Fix undesired <Tab> mapping by cmp when using ":" command mode
+      vim.keymap.set("c", "<Tab>", "<C-z>", { silent = false })
     end,
   },
   --}}}
