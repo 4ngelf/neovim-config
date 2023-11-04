@@ -12,6 +12,7 @@ return {
     version = false,
     event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
+      -- TODO: Configure snippets
 
       "LuaSnip",
       "saadparwaiz1/cmp_luasnip",
