@@ -93,7 +93,6 @@ return {
       defaults = {
         mode = { "n", "v" },
         ["g"] = { name = "+goto" },
-        ["ys"] = { name = "+surround" },
         ["]"] = { name = "+next" },
         ["["] = { name = "+prev" },
         ["<leader>c"] = { name = "+code" },
