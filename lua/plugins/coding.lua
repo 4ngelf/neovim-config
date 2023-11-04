@@ -241,11 +241,13 @@ return {
   -- }}}
 
   -- Toggle comment
-  -- mini.comment {{{
+  -- Comment.nvim {{{
   {
-    "echasnovski/mini.comment",
-    version = "*",
-    config = true,
+    "numToStr/Comment.nvim",
+    opts = {
+      -- add any options here
+    },
+    lazy = false,
   },
   -- }}}
 }
