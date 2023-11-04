@@ -10,17 +10,17 @@ return {
     name = "catppuccin",
     version = "^1.4.0",
     event = "VeryLazy",
-    config = function ()
+    config = function()
       require("catppuccin").setup({
         flavour = "frappe", -- latte, frappe, macchiato, mocha
         background = { -- :h background
           light = "latte",
-          dark = "frappe"
+          dark = "frappe",
         },
         transparent_background = TRANSPARENT_BACKGROUND,
         integrations = {
           cmp = true,
-          dap = { enabled = true, enable_ui = true, },
+          dap = { enabled = true, enable_ui = true },
           dashboard = true,
           fidget = true,
           gitsigns = true,
@@ -31,7 +31,7 @@ return {
           telescope = { enabled = true },
           treesitter = true,
           which_key = true,
-        }
+        },
       })
     end,
   },
@@ -39,15 +39,15 @@ return {
     "navarasu/onedark.nvim",
     name = "onedark",
     event = "VeryLazy",
-    config = function ()
+    config = function()
       require("onedark").setup({
         style = "dark",
         transparent = TRANSPARENT_BACKGROUND,
         lualine = {
-          transparent = TRANSPARENT_BACKGROUND
-        }
+          transparent = TRANSPARENT_BACKGROUND,
+        },
       })
     end,
   },
-
 }
+-- vim:foldmethod=marker foldmarker={{{,}}} foldlevel=0
