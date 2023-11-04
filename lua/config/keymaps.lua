@@ -19,8 +19,14 @@ WHICH_KEY_MAPS_GROUPS = {
       [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
       "Sustitute all coincidences with word under cursor",
     },
-    ["<leader>zo"] = { "<cmd>%foldopen<CR>", "Open all folds" },
-    ["<leader>zc"] = { "<cmd>%foldclose<CR>", "Close all folds" },
+    ["<leader>zo"] = { "<cmd>set foldlevel=99<CR>", "Open all folds" },
+    ["<leader>zc"] = {
+      function()
+        local win = vim.api.nvim_get_current_win()
+        vim.wo[win].foldlevel = vim.wo[win].foldmethod == "marker" and 0 or 1
+      end,
+      "Close all folds",
+    },
 
     ["<leader>hl"] = {
       function()

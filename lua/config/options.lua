@@ -28,7 +28,11 @@ opt.fixeol = true -- Turn on appending new line in the end of a file
 -- }}}
 
 -- Folding {{{
-opt.foldmethod = "syntax"
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldenable = true
+opt.foldnestmax = 3
+opt.foldlevelstart = 1
 -- }}}
 
 -- Search {{{
