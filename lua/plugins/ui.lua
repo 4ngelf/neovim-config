@@ -42,18 +42,51 @@ return {
   },
   -- }}}
 
-  -- Startup screen
-  -- {{{
+  -- Blankline
+  -- indent-blankline {{{
   {
-    "startup-nvim/startup.nvim",
-    lazy = false,
-    dependencies = { "telescope.nvim", "plenary.nvim" },
-    opts = {},
-    config = function(_, opts)
-      require("startup").setup(opts)
-    end,
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {
+      exclude = {
+        filetypes = {
+          "lspinfo",
+          "packer",
+          "checkhealth",
+          "help",
+          "man",
+          "gitcommit",
+          "TelescopePrompt",
+          "TelescopeResults",
+          "dashboard",
+          "''",
+        },
+      },
+    },
   },
   -- }}}
+
+  -- Startup screen
+  -- dashboard-nvim {{{
+  {
+    "nvimdev/dashboard-nvim",
+    event = "VimEnter",
+    config = function()
+      require("dashboard").setup({
+        -- config
+      })
+    end,
+    dependencies = { "nvim-web-devicons" },
+  },
+  -- }}}
+
+  -- Improve ui components
+  -- dressing.nvim {{{
+  {
+    "stevearc/dressing.nvim",
+    opts = {},
+  },
+  --}}}
 }
 
 -- vim: foldmethod=marker foldmarker={{{,}}}
