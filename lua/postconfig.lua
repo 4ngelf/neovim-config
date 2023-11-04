@@ -3,8 +3,8 @@
   Description: Commands to run after defined settings
 ]]
 
--- Set colorscheme
-vim.cmd("colorscheme " .. COLORSCHEME)
+-- Ensure colorscheme is used if not installed before
+vim.cmd("colorscheme " .. DEFAULT_COLORSCHEME)
 
 -- Set keymaps with which-key
 for _, keymaps in ipairs(WHICH_KEY_MAPS_GROUPS) do

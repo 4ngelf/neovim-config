@@ -11,7 +11,12 @@ require("config")
 
 -- Plugin management
 local lazy = require("lazy")
-lazy.setup("plugins")
+lazy.setup({
+  spec = { import = "plugins" },
+  install = {
+    colorscheme = { DEFAULT_COLORSCHEME, "habamax" },
+  },
+})
 
 -- Post configuration
 require("postconfig")
