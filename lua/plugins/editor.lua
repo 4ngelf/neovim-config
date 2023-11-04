@@ -158,6 +158,7 @@ return {
   -- Neogit {{{
   {
     "NeogitOrg/neogit",
+    commit = "69482aa8404bf8b4775110393c8248e784fccbf1",
     cmd = { "Neogit", "NeogitMessages", "NeogitResetState" },
     keys = {
       { "<leader>ug", "<cmd>Neogit<CR>", desc = "Neogit" },
