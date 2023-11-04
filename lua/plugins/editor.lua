@@ -100,6 +100,7 @@ return {
         ["<leader>f"] = { name = "+file/find" },
         ["<leader>u"] = {
           name = "+ui",
+          mode = "n",
           l = { "<cmd>Lazy<CR>", "Lazy.nvim" },
         },
         -- ["<leader><tab>"] = { name = "+tabs" },

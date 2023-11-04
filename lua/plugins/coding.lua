@@ -79,14 +79,19 @@ return {
               fallback()
             end
           end, { "i" }),
+          ["<C-s>"] = cmp.mapping.complete({
+            ---@diagnostic disable-next-line:missing-fields
+            config = {
+              sources = { { name = "luasnip" } },
+            },
+          }),
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
             -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
             -- that way you will only jump inside the snippet region
-
-            -- elseif luasnip.expand_or_locally_jumpable() then
-            --   luasnip.expand_or_jump()
+            elseif luasnip.expand_or_locally_jumpable() then
+              luasnip.expand_or_jump()
             elseif has_words_before() then
               cmp.complete()
             else
@@ -97,9 +102,8 @@ return {
           ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
-
-            -- elseif luasnip.jumpable(-1) then
-            --   luasnip.jump(-1)
+            elseif luasnip.jumpable(-1) then
+              luasnip.jump(-1)
             else
               fallback()
             end
@@ -158,7 +162,7 @@ return {
       cmp.setup.cmdline(":", { enabled = false })
 
       -- Fix undesired <Tab> mapping by cmp when using ":" command mode
-      vim.keymap.set("c", "<Tab>", "<C-z>", { silent = false })
+      vim.keymap.set("c", "<Tab>", "<C-z>", { silent = false, noremap = false })
       --}}}
     end,
   },
@@ -169,8 +173,12 @@ return {
   {
     "L3MON4D3/LuaSnip",
     version = "^2.0.0",
-    dependencies = {},
-    config = false,
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+    },
+    config = function()
+      require("luasnip.loaders.from_vscode").lazy_load()
+    end,
   },
   -- }}}
 

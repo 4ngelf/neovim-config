@@ -20,16 +20,24 @@ return {
       vim.api.nvim_create_autocmd("LspAttach", {
         desc = "LSP actions",
         callback = function(event)
-          local opts = { buffer = event.buf }
+          local has_wk, wk = pcall(require, "which-key")
+          if not has_wk then
+            return
+          end
 
-          vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-          vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-          vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-          vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-          vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
-          vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-          vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
-          vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+          local opts = { mode = "n", buffer = event.buf, noremap = true, nowait = true }
+          wk.register({
+            ["K"] = { vim.lsp.buf.hover, "Display hover information" },
+            ["gs"] = { vim.lsp.buf.signature_help, "Display signature information" },
+            ["gd"] = { vim.lsp.buf.definition, "Go to definition" },
+            ["gD"] = { vim.lsp.buf.declaration, "Go to declaration" },
+            ["go"] = { vim.lsp.buf.type_definition, "Go to definition" },
+            ["gi"] = { vim.lsp.buf.implementation, "List symbol's implementations" },
+            ["gr"] = { vim.lsp.buf.references, "List symbol's references" },
+
+            ["<F4>"] = { vim.lsp.buf.code_action, "Show code actions" },
+            ["<leader>s"] = { vim.lsp.buf.rename, "Rename symbol" },
+          }, opts)
         end,
       })
 
