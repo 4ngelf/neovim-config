@@ -1,5 +1,5 @@
 --[[
-  module: plugins.coding.formatter
+  module: plugins.formatter
   description: all plugins and configuration related to formatters (language server protocol)
 ]]
 
@@ -50,5 +50,4 @@ return {
   },
   -- }}}
 }
-
--- vim: foldmethod=marker foldmarker={{{,}}}
+-- vim:foldmethod=marker foldmarker={{{,}}} foldlevel=0

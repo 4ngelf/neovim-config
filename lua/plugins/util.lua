@@ -49,5 +49,4 @@ return {
   },
   -- }}}
 }
-
--- vim: foldmethod=marker foldmarker={{{,}}}
+-- vim:foldmethod=marker foldmarker={{{,}}} foldlevel=0

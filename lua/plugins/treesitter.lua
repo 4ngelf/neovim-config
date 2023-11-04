@@ -1,5 +1,5 @@
 --[[
-  Module: plugins.telescope
+  Module: plugins.treesitter
   Description: Plugins for TUIs like telescope, neogit, etc
 ]]
 
@@ -62,5 +62,4 @@ return {
   },
   -- }}}
 }
-
--- vim: foldmethod=marker foldmarker={{{,}}}
+-- vim:foldmethod=marker foldmarker={{{,}}} foldlevel=0

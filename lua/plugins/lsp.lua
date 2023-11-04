@@ -1,5 +1,5 @@
 --[[
-  Module: plugins.coding.lsp
+  Module: plugins.lsp
   Description: All plugins and configuration related to LSP (Language Server Protocol)
 ]]
 
@@ -155,5 +155,4 @@ return {
   },
   -- }}}
 }
-
--- vim: foldmethod=marker foldmarker={{{,}}}
+-- vim:foldmethod=marker foldmarker={{{,}}} foldlevel=0

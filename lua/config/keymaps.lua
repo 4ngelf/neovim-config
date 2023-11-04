@@ -52,4 +52,4 @@ WHICH_KEY_MAPS_GROUPS = {
 -- nm("<leader>xx", "<cmd>silent !chmod +x %<CR>") -- Make current editing file executable
 -- nm("<leader>x", "<cmd>!$(realpath %)<CR>") -- Run current editing file
 
--- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua foldmethod=marker foldlevelstart=0 foldlevel=0
+-- vim:foldmethod=marker foldmarker={{{,}}} foldlevel=0
