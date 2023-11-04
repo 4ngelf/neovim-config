@@ -4,16 +4,10 @@
   Info: Use <zo> and <zc> to open and close foldings
 ]]
 
-require("helpers/globals")
+local opt = vim.opt
+local g = vim.g
 
--- Theme
-THEME = "catppuccin-frappe"
-
--- Set associating between turned on plugins and filetype
-cmd([[filetype plugin on]])
-
--- Disable comments on pressing Enter
-cmd([[autocmd FileType * setlocal formatoptions-=cro]])
+g.mapleader = " "
 
 -- Scrolling {{{
 opt.number = true
@@ -24,7 +18,7 @@ opt.scrolloff = 8
 -- Tabs {{{
 opt.expandtab = true -- Use spaces by default
 opt.shiftwidth = 4 -- Set amount of space characters, when we press "<" or ">"
--- opt.tabstop = 4 -- 1 tab equal to so much spaces.
+opt.tabstop = 2 -- 1 tab equal to so much spaces.
 opt.smartindent = true -- Turn on smart indentation. See in the docs for more info
 -- }}}
 
@@ -61,7 +55,7 @@ opt.termguicolors = true
 -- }}}
 
 -- Python {{{
-g["python3_host_prog"] = fn.stdpath("config") .. "/py3nvim/bin/python3"
+g["python3_host_prog"] = vim.fn.stdpath("config") .. "/py3nvim/bin/python3"
 -- }}}
 
 -- Default Plugins {{{

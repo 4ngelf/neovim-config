@@ -6,16 +6,14 @@
 -- Bootsraping plugin manager
 require("lazy-bootstrap")
 
--- Settings
-require("settings")
-require("keybindings")
+-- Configuration, globals, options, autocmds
+require("config")
 
--- Plugin management {{{
+-- Plugin management
 local lazy = require("lazy")
 lazy.setup("plugins")
--- }}}
 
--- Set theme
-vim.cmd("colorscheme " .. THEME)
+-- Post configuration
+require("postconfig")
 
 -- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua foldmethod=marker foldlevelstart=0 foldlevel=0
