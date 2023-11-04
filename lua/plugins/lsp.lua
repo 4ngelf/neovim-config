@@ -28,7 +28,7 @@ return {
           local opts = { mode = "n", buffer = event.buf, noremap = true, nowait = true }
           wk.register({
             ["K"] = { vim.lsp.buf.hover, "Display hover information" },
-            ["gs"] = { vim.lsp.buf.signature_help, "Display signature information" },
+            ["gk"] = { vim.lsp.buf.signature_help, "Display signature information" },
             ["gd"] = { vim.lsp.buf.definition, "Go to definition" },
             ["gD"] = { vim.lsp.buf.declaration, "Go to declaration" },
             ["go"] = { vim.lsp.buf.type_definition, "Go to definition" },

@@ -227,6 +227,33 @@ return {
     config = true,
   },
   --}}}
+
+  -- faster motions
+  -- leap.nvim {{{
+  {
+    "ggandor/leap.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("leap").add_default_mappings()
+    end,
+  },
+
+  -- }}}
+
+  -- Toggle comment
+  -- mini.comment {{{
+  {
+    "echasnovski/mini.comment",
+    version = "*",
+    opts = {
+      comment = "<leader>gc",
+      comment_line = "<leader>gcc",
+      comment_visual = "<leader>gc",
+      textobject = "<leader>gc",
+    },
+    config = true,
+  },
+  -- }}}
 }
 
 -- vim: foldmethod=marker foldmarker={{{,}}}
