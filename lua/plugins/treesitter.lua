@@ -12,7 +12,9 @@ return {
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     config = function()
+      ---@diagnostic disable-next-line:missing-fields
       require("nvim-treesitter.configs").setup({
+        -- modules = {},
         ensure_installed = {
           "bash",
           "c",
@@ -38,7 +40,7 @@ return {
         auto_install = false,
 
         -- List of parsers to ignore installing (or "all")
-        ignore_install = { },
+        ignore_install = {},
 
         highlight = {
           enable = true,
@@ -55,12 +57,10 @@ return {
             end
           end,
         },
-
       })
     end,
   },
   -- }}}
-
 }
 
 -- vim: foldmethod=marker foldmarker={{{,}}}

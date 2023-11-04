@@ -5,13 +5,8 @@
         "lua/?.lua",
         "lua/?/init.lua"
     ],
-    "diagnostics.disable": ["lowercase-global"],
-    "diagnostics.globals": ["vim"],
     "diagnostics.ignoredFiles": "Disable",
     "workspace.checkThirdParty": false,
-    "workspace.library": [
-        "./lua"
-    ],
     "workspace.ignoreDir": [
         "templates/**"
     ]

@@ -93,7 +93,7 @@ return {
       defaults = {
         mode = { "n", "v" },
         ["g"] = { name = "+goto" },
-        ["gs"] = { name = "+surround" },
+        ["ys"] = { name = "+surround" },
         ["]"] = { name = "+next" },
         ["["] = { name = "+prev" },
         ["<leader>c"] = { name = "+code" },
@@ -131,9 +131,26 @@ return {
     cmd = { "TroubleToggle", "Trouble" },
     opts = { use_diagnostic_signs = true },
     keys = {
-      -- { "gr", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
-      { "gr", "<cmd>TroubleToggle<cr>", desc = "Workspace Diagnostics (Trouble)" },
+      { "<leader>uR", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
+      { "<leader>ur", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
     },
+  },
+  -- }}}
+
+  -- Listing TODO, FIX, NOTE comments
+  -- todo-comments {{{
+  {
+    "folke/todo-comments.nvim",
+    version = "^1.1.0",
+    cmd = { "TodoTrouble" },
+    keys = {
+      { "<leader>ut", "<CMD>TodoTrouble<CR>", desc = "TODO comments (Trouble)" },
+    },
+    dependencies = {
+      "plenary.nvim",
+      "trouble.nvim",
+    },
+    config = true,
   },
   -- }}}
 

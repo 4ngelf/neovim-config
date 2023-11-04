@@ -6,10 +6,10 @@
 -- Bootsraping plugin manager
 require("lazy-bootstrap")
 
--- Configuration, globals, options
+-- Configuration, globals, options, autocmds
 require("config")
 
--- Plugin management 
+-- Plugin management
 local lazy = require("lazy")
 lazy.setup("plugins")
 

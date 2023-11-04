@@ -4,7 +4,7 @@
 ]]
 
 return {
-  -- Discord Rich precense
+  -- Discord Rich presence
   -- presence.nvim {{{
   {
     "andweeb/presence.nvim",
@@ -14,7 +14,7 @@ return {
       neovim_image_text = "The One True Text Editor", -- Text displayed when hovered over the Neovim image
       main_image = "file", -- Main image display (either "neovim" or "file")
       blacklist = {}, -- A list of strings or Lua patterns that disable Rich Presence if the current file name, path, or workspace matches
-      -- TODO: Consider making button for github.com/4ngelf
+      -- NOTE: Consider making button for github.com/4ngelf
       buttons = false, -- Configure Rich Presence button(s), either a boolean to enable/disable, a static table (`{{ label = "<label>", url = "<url>" }, ...}`, or a function(buffer: string, repo_url: string|nil): table)
       show_time = true,
 

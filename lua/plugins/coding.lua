@@ -4,6 +4,7 @@
 ]]
 
 return {
+
   -- Code completions
   -- nvim-cmp {{{
   {
@@ -12,9 +13,6 @@ return {
     event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
       -- TODO: Configure snippets
-      -- TODO: Install some autoclose pair plugin
-      -- TODO: install surround.nvim
-      -- TODO: Deactivate pyright diagnostics and leave that to ruff
 
       "LuaSnip",
       "saadparwaiz1/cmp_luasnip",
@@ -71,6 +69,7 @@ return {
           }),
         },
         mapping = {
+          ["<C-Space>"] = cmp.mapping.complete(),
           ["<CR>"] = cmp.mapping.confirm({ select = false, behavior = cmp.ConfirmBehavior.Replace }),
           ["<Esc>"] = cmp.mapping(function(fallback)
             local is_selected = cmp.get_active_entry() ~= nil
@@ -80,7 +79,6 @@ return {
               fallback()
             end
           end, { "i" }),
-          ["<C-Space>"] = cmp.mapping.complete(),
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
@@ -155,10 +153,13 @@ return {
 
       cmp.setup.cmdline("/", search_opts)
       cmp.setup.cmdline("?", search_opts)
+
+      ---@diagnostic disable-next-line:missing-fields
       cmp.setup.cmdline(":", { enabled = false })
 
       -- Fix undesired <Tab> mapping by cmp when using ":" command mode
       vim.keymap.set("c", "<Tab>", "<C-z>", { silent = false })
+      --}}}
     end,
   },
   --}}}
@@ -172,6 +173,53 @@ return {
     config = false,
   },
   -- }}}
+
+  -- Automatic pairs
+  -- nvim-autopairs {{{
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    dependencies = {
+      "nvim-cmp",
+    },
+    opts = {
+      disable_filetype = { "TelescopePrompt", "spectre_panel" },
+      disable_in_macro = true,
+      disable_in_visualblock = false,
+      disable_in_replace_mode = true,
+      ignored_next_char = [=[[%w%%%'%[%"%.%`%$]]=],
+      enable_moveright = true,
+      enable_afterquote = true,
+      enable_check_bracket_line = true,
+      enable_bracket_in_quote = true, --,
+      enable_abbr = false, -- trigger abbreviation
+      break_undo = true, -- switch for basic rule break undo sequence
+      check_ts = false,
+      map_cr = true,
+      map_bs = true, -- map the <BS> key
+      map_c_h = false, -- Map the <C-h> key to delete a pair
+      map_c_w = false, -- map <c-w> to delete a pair if possible
+    },
+    config = function(_, opts)
+      local autopairs = require("nvim-autopairs")
+      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+      local cmp = require("cmp")
+
+      autopairs.setup(opts)
+      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+    end,
+  },
+  --}}}
+
+  -- helpers to manually surround text
+  -- nvim-surround {{{
+  {
+    "kylechui/nvim-surround",
+    version = "^2.1.2",
+    event = "InsertEnter",
+    config = true,
+  },
+  --}}}
 }
 
 -- vim: foldmethod=marker foldmarker={{{,}}}
