@@ -41,6 +41,19 @@ return {
     end,
   },
   -- }}}
+
+  -- Startup screen
+  -- {{{
+  {
+    "startup-nvim/startup.nvim",
+    lazy = false,
+    dependencies = { "telescope.nvim", "plenary.nvim" },
+    opts = {},
+    config = function(_, opts)
+      require("startup").setup(opts)
+    end,
+  },
+  -- }}}
 }
 
 -- vim: foldmethod=marker foldmarker={{{,}}}

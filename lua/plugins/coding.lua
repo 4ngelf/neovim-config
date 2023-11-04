@@ -245,12 +245,6 @@ return {
   {
     "echasnovski/mini.comment",
     version = "*",
-    opts = {
-      comment = "<leader>gc",
-      comment_line = "<leader>gcc",
-      comment_visual = "<leader>gc",
-      textobject = "<leader>gc",
-    },
     config = true,
   },
   -- }}}

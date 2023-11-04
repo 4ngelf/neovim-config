@@ -8,6 +8,7 @@ return {
   -- presence.nvim {{{
   {
     "andweeb/presence.nvim",
+    event = "VeryLazy",
     opts = {
       -- General options
       auto_update = true,
