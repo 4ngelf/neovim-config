@@ -142,13 +142,12 @@ return {
   {
     "folke/todo-comments.nvim",
     version = "^1.1.0",
-    cmd = { "TodoTrouble" },
+    event = "BufReadPre",
     keys = {
       { "<leader>ut", "<CMD>TodoTrouble<CR>", desc = "TODO comments (Trouble)" },
     },
     dependencies = {
       "plenary.nvim",
-      "trouble.nvim",
     },
     config = true,
   },
