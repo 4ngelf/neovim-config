@@ -74,15 +74,7 @@ vim.api.nvim_create_autocmd("FileType", {
   },
   callback = function()
     local win = vim.api.nvim_get_current_win()
-    vim.api.nvim_win_set_height(win, 10)
-  end,
-})
-
-vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-  desc = "Ensure configured foldmethod is used",
-  group = augroup("ensure_foldmethod"),
-  callback = function()
-    vim.wo.foldmethod = vim.wo.foldmethod
+    vim.api.nvim_win_set_height(win, 12)
   end,
 })
 

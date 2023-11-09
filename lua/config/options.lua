@@ -8,6 +8,7 @@ local opt = vim.opt
 local g = vim.g
 
 g.mapleader = " "
+g.maplocalleader = "\\"
 
 -- Scrolling {{{
 opt.number = true
@@ -32,7 +33,7 @@ opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldenable = true
 opt.foldnestmax = 3
-opt.foldlevelstart = 1
+opt.foldlevelstart = 99
 -- }}}
 
 -- Search {{{
@@ -56,6 +57,11 @@ opt.wildmode = "longest:full,full"
 -- wrap {{{
 opt.wrap = false
 opt.termguicolors = true
+-- }}}
+
+-- others {{{
+opt.formatoptions = "jcroqlnt" -- default: tcqj
+opt.spelllang = { "en" }
 -- }}}
 
 -- Python {{{

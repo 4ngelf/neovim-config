@@ -19,10 +19,12 @@ WHICH_KEY_MAPS_GROUPS = {
       [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
       "Sustitute all coincidences with word under cursor",
     },
-    ["<leader>zo"] = { "<cmd>set foldlevel=99<CR>", "Open all folds" },
+
+    ["<leader>zo"] = { "zx<cmd>set foldlevel=99<CR>", "Open all folds" },
     ["<leader>zc"] = {
       function()
         local win = vim.api.nvim_get_current_win()
+        vim.wo[win].foldmethod = vim.wo[win].foldmethod
         vim.wo[win].foldlevel = vim.wo[win].foldmethod == "marker" and 0 or 1
       end,
       "Close all folds",
@@ -37,6 +39,8 @@ WHICH_KEY_MAPS_GROUPS = {
       end,
       "Change treesitter highlighting",
     },
+
+    ["<leader>X"] = { "<CMD>!$(realpath %)<CR>", "Run current editing file" },
   },
 
   -- visual mode keymaps
@@ -56,6 +60,5 @@ WHICH_KEY_MAPS_GROUPS = {
 -- vm("<leader>y", '"+y') -- Copy selected text into system clipboard
 
 -- nm("<leader>xx", "<cmd>silent !chmod +x %<CR>") -- Make current editing file executable
--- nm("<leader>x", "<cmd>!$(realpath %)<CR>") -- Run current editing file
 
 -- vim:foldmethod=marker foldmarker={{{,}}} foldlevel=0
