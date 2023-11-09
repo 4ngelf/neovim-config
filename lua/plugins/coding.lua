@@ -259,5 +259,19 @@ return {
     lazy = false,
   },
   -- }}}
+
+  -- Enhanced folding keymaps
+  -- origami.nvim {{{
+  {
+    "chrisgrieser/nvim-origami",
+    event = "BufReadPost",
+    options = {
+      keepFoldsAcrossSessions = false,
+      pauseFoldsOnSearch = true,
+      setupFoldKeymaps = true,
+    },
+    config = true,
+  },
+  -- }}}
 }
 -- vim:foldmethod=marker foldmarker={{{,}}} foldlevel=0
