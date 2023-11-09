@@ -30,6 +30,20 @@ WHICH_KEY_MAPS_GROUPS = {
       "Close all folds",
     },
 
+    ["<leader>c"] = {
+
+      function()
+        vim.fn.setreg("", vim.fn.getreg("+"))
+      end,
+      "Set system clipboard on neovim",
+    },
+    ["<leader>C"] = {
+      function()
+        vim.fn.setreg("+", vim.fn.getreg(""))
+      end,
+      "Set neovim clipboard on system",
+    },
+
     ["<leader>hl"] = {
       function()
         local bufn = vim.api.nvim_get_current_buf()
@@ -51,14 +65,5 @@ WHICH_KEY_MAPS_GROUPS = {
     ["K"] = { ":m '<-2<CR>gv", "Move selected line Up" },
   },
 }
-
---TODO: Improve clipboard management
--- nm("<leader>p", '"+p') -- paste forward with system clipboard
--- nm("<leader>P", '"+P') -- paste backward with system clipboard
--- nm("<leader>y", '"+y') -- Yank forward with system clipboard
--- nm("<leader>Y", '"+Y') -- Yank backward with system clipboard
--- vm("<leader>y", '"+y') -- Copy selected text into system clipboard
-
--- nm("<leader>xx", "<cmd>silent !chmod +x %<CR>") -- Make current editing file executable
 
 -- vim:foldmethod=marker foldmarker={{{,}}} foldlevel=0
