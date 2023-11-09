@@ -33,6 +33,8 @@ return {
       local lspkind = require("lspkind")
       local luasnip = require("luasnip")
 
+      vim.api.nvim_set_hl(0, "CmpNormal", { bg = "#232634" })
+
       local buf_is_big = function(bufnr)
         local max_filesize = 200 * 1024 -- 200 KB
         ---@diagnostic disable-next-line: undefined-field
@@ -58,7 +60,14 @@ return {
             luasnip.lsp_expand(args.body)
           end,
         },
-        -- window = {},
+        window = {
+          completion = {
+            winhighlight = "Normal:CmpNormal",
+          },
+          documentation = {
+            winhighlight = "Normal:CmpNormal",
+          },
+        },
         formatting = {
           format = lspkind.cmp_format({
             preset = "default",
