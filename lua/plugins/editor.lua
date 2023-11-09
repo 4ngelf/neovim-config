@@ -181,6 +181,14 @@ return {
     keys = {
       { "<leader>un", "<cmd>NnnPicker<CR>", desc = "nnn file explorer" },
     },
+    cond = function()
+      if not vim.fn.executable("nnn") then
+        vim.api.nvim_err_write("nnn executable not found on PATH")
+        vim.api.nvim_err_writeln("See also: https://github.com/jarun/nnn")
+        return false
+      end
+      return true
+    end,
     config = function()
       require("nnn").setup({
         picker = {
