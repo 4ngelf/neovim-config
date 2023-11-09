@@ -30,6 +30,7 @@ return {
       { "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Live grep" },
       { "<leader>fr", "<cmd>Telescope lsp_references<CR>", desc = "Find references" },
       { "<leader>fc", "<cmd>Telescope colorscheme enable_preview=true<CR>", desc = "Preview colorschemes" },
+      { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find buffers" },
       -- }}}
     },
     config = function()
@@ -144,7 +145,7 @@ return {
     version = "^1.1.0",
     event = "BufReadPre",
     keys = {
-      { "<leader>ut", "<CMD>TodoTrouble<CR>", desc = "TODO comments (Trouble)" },
+      { "<leader>uT", "<CMD>TodoTrouble<CR>", desc = "TODO comments (Trouble)" },
     },
     dependencies = {
       "plenary.nvim",

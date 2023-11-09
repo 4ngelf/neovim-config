@@ -9,6 +9,27 @@ WHICH_KEY_MAPS_GROUPS = {
   {
     mode = "n",
     noremap = true,
+
+    ["<C-h>"] = { "<C-w>h", "Go to left window", noremap = false },
+    ["<C-j>"] = { "<C-w>j", "Go to lower window", noremap = false },
+    ["<C-k>"] = { "<C-w>k", "Go to upper window", noremap = false },
+    ["<C-l>"] = { "<C-w>l", "Go to right window", noremap = false },
+
+    ["<C-Up>"] = { "<cmd>resize +2<cr>", "Increase window height" },
+    ["<C-Down>"] = { "<cmd>resize -2<cr>", "Decrease window height" },
+    ["<C-Left>"] = { "<cmd>vertical resize -2<cr>", "Decrease window width" },
+    ["<C-Right>"] = { "<cmd>vertical resize +2<cr>", "Increase window width" },
+
+    ["<leader><tab>"] = {
+      name = "+tabs",
+      ["<tab>"] = { "<cmd>tabnew<cr>", "New tab" },
+      ["d"] = { "<cmd>tabclose<cr>", "Close tab" },
+      ["f"] = { "<cmd>tabfirst<cr>", "Go to first tab" },
+      ["l"] = { "<cmd>tablast<cr>", "Go to last tab" },
+      ["]"] = { "<cmd>tabnext<cr>", "Go to next tab" },
+      ["["] = { "<cmd>tabprevious<cr>", "Go to previous tab" },
+    },
+
     ["J"] = { "mzJ`z", "Join lines without moving the cursor" },
     ["<C-u>"] = { "<C-u>zz", "Scroll up with cursor in the middle" },
     ["<C-d>"] = { "<C-d>zz", "Scroll down with cursor in the middle" },
@@ -20,6 +41,7 @@ WHICH_KEY_MAPS_GROUPS = {
       "Sustitute all coincidences with word under cursor",
     },
 
+    ["<leader>z"] = { name = "+fold" },
     ["<leader>zo"] = { "zx<cmd>set foldlevel=99<CR>", "Open all folds" },
     ["<leader>zc"] = {
       function()
@@ -31,7 +53,6 @@ WHICH_KEY_MAPS_GROUPS = {
     },
 
     ["<leader>c"] = {
-
       function()
         vim.fn.setreg("", vim.fn.getreg("+"))
       end,
@@ -63,6 +84,9 @@ WHICH_KEY_MAPS_GROUPS = {
     noremap = true,
     ["J"] = { ":m '>+1<CR>gv", "Move selected line Down" },
     ["K"] = { ":m '<-2<CR>gv", "Move selected line Up" },
+
+    ["<"] = { "<gv", "Better left indenting" },
+    [">"] = { ">gv", "Better right indenting" },
   },
 }
 
