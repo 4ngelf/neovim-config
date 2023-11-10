@@ -99,7 +99,7 @@ return {
   -- Formatters and linters as language server
   -- null-ls {{{
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "plenary.nvim",
