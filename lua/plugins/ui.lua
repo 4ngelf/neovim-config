@@ -104,57 +104,12 @@ return {
       local find_nvim = find_files .. vim.fn.stdpath("config")
       local find_dots = find_files .. DOTFILES_DIR
 
-      --- Wrap line that exists max length.
-      --- NOTE: Only wraps up to two lines.
-      local function wrap(line, max_length)
-        if #line > max_length then
-          local wrap_index = max_length
-          for i = wrap_index, 1, -1 do
-            if line[i] == " " then
-              wrap_index = i
-              break
-            end
-          end
-          return {
-            string.sub(line, 1, wrap_index),
-            string.sub(line, wrap_index, #line),
-          }
-        else
-          return { line, "" }
-        end
-      end
-
-      --- Fetches a quote from file
-      ---@return string[]
-      local function fetch_quote()
-        local max_length = 60
-        local quotes_file = vim.fn.stdpath("config") .. "/lua/util/dashboard.lua"
-        local file = io.open(quotes_file, "r")
-        if file == nil then
-          vim.api.nvim_err_writeln("dashboard.nvim: Couldn't find file with quotes.")
-          return {
-            "I'm a teapot. 🫖",
-            "      - HTTP 418",
-          }
-        end
-
-        local lines = {}
-        for line in file:lines() do
-          table.insert(lines, line)
-        end
-
-        local index = math.random(#lines)
-        local selected = wrap(lines[index], max_length)
-
-        return selected
-      end
-
       local function footer()
-        local quote = fetch_quote()
+        local quote = require("util.dashboard").get_quote()
         return {
           "",
-          quote[1],
-          quote[2],
+          quote[1] or "",
+          quote[2] or "",
           "",
           "cwd:[" .. vim.fn.getcwd() .. "]",
         }
@@ -206,6 +161,7 @@ return {
     end,
     config = function(_, opts)
       require("dashboard").setup(opts)
+
       vim.api.nvim_set_hl(0, "DashboardHeader", { fg = "#a6d189" })
       vim.api.nvim_set_hl(0, "DashboardMruTitle", { fg = "#8caaee" })
       vim.api.nvim_set_hl(0, "DashboardProjectTitle", { fg = "#8caaee" })
