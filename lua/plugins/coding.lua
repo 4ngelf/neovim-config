@@ -265,7 +265,7 @@ return {
   {
     "chrisgrieser/nvim-origami",
     event = "BufReadPost",
-    options = {
+    opts = {
       keepFoldsAcrossSessions = false,
       pauseFoldsOnSearch = true,
       setupFoldKeymaps = true,
