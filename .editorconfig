@@ -12,3 +12,5 @@ indent_size = 2
 [*.{json,py}]
 indent_size = 4
 
+[makefile]
+indent_style=tab

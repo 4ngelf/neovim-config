@@ -64,8 +64,9 @@ opt.formatoptions = "jcroqlnt" -- default: tcqj
 opt.spelllang = { "en" }
 -- }}}
 
--- Python {{{
-g["python3_host_prog"] = vim.fn.stdpath("config") .. "/py3nvim/bin/python3"
+-- providers {{{
+g["python3_host_prog"] = vim.fn.stdpath("config") .. "/provider/python/bin/python3"
+g["node_host_prog"] = vim.fn.stdpath("config") .. "/provider/node/node_modules/neovim/bin/cli.js"
 -- }}}
 
 -- Default Plugins {{{
