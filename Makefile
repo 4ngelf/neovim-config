@@ -49,11 +49,11 @@ endif
 plugins-list:
 	@${NVIM_EXEC} ${ROOT_DIR}/README.md --headless \
 		-c "lua plugins={}" \
-		-c "lua for p in require('lazy').plugins() do plugins[#plugins]='['..p.name..']('..url=string.sub(p.url, 1, -5)}..')' end" \
+		-c "lua for _,p in ipairs(require('lazy').plugins()) do plugins[#plugins+1]='['..p.name..']('..string.sub(p.url, 1, -5)..')' end" \
 		-c "lua plugins=vim.fn.sort(plugins) end)" \
-		-c "lua start=vim.fn.search('<!-- plugins -->', 'cwn')" \
-		-c "lua end=vim.fn.search('<!-- plugins-end -->', 'cwn')" \
-		-c "lua vim.api.nvim_buf_set_lines(0, start + 1, end - 1,, plugins)" \
+		-c "lua _start=vim.fn.search('<!-- plugins -->', 'cwn')" \
+		-c "lua _end=vim.fn.search('<!-- plugins-end -->', 'cwn')" \
+		-c "lua vim.api.nvim_buf_set_lines(0, _start + 1, _end - 1, true, plugins)" \
 		-c wq
 		
 	@echo "Plugin list updated!"
