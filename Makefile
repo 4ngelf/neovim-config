@@ -46,14 +46,15 @@ endif
 	@echo "  node.js $$(${NODE_EXEC} --version)"
 	@echo "  neovim (npm) $$(${NODE_EXEC} ${NODE_PACKAGE}/node_modules/neovim/bin/cli.js --version)"
 
-plugins-list:
-	@${NVIM_EXEC} ${ROOT_DIR}/README.md --headless \
+plugin-list:
+	@${NVIM_EXEC} --headless \
 		-c "lua plugins={}" \
 		-c "lua for _,p in ipairs(require('lazy').plugins()) do plugins[#plugins+1]='['..p.name..']('..string.sub(p.url, 1, -5)..')' end" \
-		-c "lua plugins=vim.fn.sort(plugins) end)" \
+		-c "lua plugins=vim.fn.sort(plugins)" \
 		-c "lua _start=vim.fn.search('<!-- plugins -->', 'cwn')" \
 		-c "lua _end=vim.fn.search('<!-- plugins-end -->', 'cwn')" \
-		-c "lua vim.api.nvim_buf_set_lines(0, _start + 1, _end - 1, true, plugins)" \
-		-c wq
+		-c "lua vim.api.nvim_buf_set_lines(0, _start, _end - 1, true, plugins)" \
+		-c wq \
+		${ROOT_DIR}/README.md
 		
 	@echo "Plugin list updated!"
