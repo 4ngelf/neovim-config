@@ -1,38 +1,57 @@
-![image](https://user-images.githubusercontent.com/101672047/235722220-dbf567c4-4e8f-4bb1-8f9a-1d6a221cda33.png)
+![Preview nvim](https://github.com/4ngelf/neovim-config/assets/32184965/568faae0-ffdf-4e1a-8f55-8179aae04a1a)
 
-Boilerplate for Neovim. A simple, well-documented template to start building your own configuration. I've created a lot of configurations before neovim introduced Lua. From time to time I saw repeating patterns: creating directories, importing the same files, and much more. I decided to create a boilerplate so that when creating a new configuration, I didn’t have to write everything from the very beginning.
+This are my neovim configuration files.
 
-Also, this boilerplate will be useful for beginners who do not know where to start writing their configuration. All files are well documented, at the top of each file you can find a frontmatter with the necessary data.
+## Inspiration
+
+- [tokiory/neovim-boilerplate](https://github.com/tokiory/neovim-boilerplate/)
+- [LazyVim/LazyVim](https://github.com/LazyVim/LazyVim)
 
 ## Use it
+
 You can use this template with the following command:
 
 ```bash
 [ -d $HOME/.config/nvim ] && mv $HOME/.config/{nvim,nvim.old}; \
-    git clone https://github.com/tokiory/neovim-boilerplate $HOME/.config/nvim
+    git clone https://github.com/4ngelf/neovim-config $HOME/.config/nvim
 ```
+
+## Dependencies
+
+<!-- dependency -->
+
+<!-- TODO: Make a list of dependencies -->
+
+<!-- dependency-end -->
 
 # Structure
 
 ```
 .
 ├── init.lua                  -- Entry point
-├── init.sh                   -- Script for installation side-software (aka packer)
+├── makefile                  -- List of tasks for configuration management
 │
-├── lua
-│  ├── extensions             -- Plugin configurations
+├── lua/
+│  ├── config/                -- Neovim configuration
+│  │  ├── autocmd.lua         -- Custom autocommands
+│  │  ├── globals.lua         -- Global variables
+│  │  ├── init.lua            -- Configuration entry point
+│  │  ├── keymaps.lua         -- Custom keyboard helpers
+│  │  └── options.lua         -- Settings for Neovim
 │  │
-│  ├── helpers
-│  │  ├── globals.lua         -- Global variables (aliases)
-│  │  └── keyboard.lua        -- Keyboard helper functions
+│  ├── plugins/               -- Plugin configurations by category
 │  │
-│  ├── keybindings.lua        -- Keyboard mappings
-│  ├── plugins.lua            -- Plugin initialization via Packer
-│  └── settings.lua           -- Settings for neovim
-└── README.md
+│  ├── util/                  -- Utility modules
+│  │
+│  ├── lazy-bootstrap.lua     -- Lazy bootstrapper
+│  └── postconfig.lua         -- Execute after configuration
+├── README.md
+└── lazy-lock.json
 ```
 
 # Packed Plugins
+
+<!-- plugins -->
 
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
 - [lsp_zero.nvim](https://github.com/VonHeikemen/lsp-zero.nvim)
@@ -47,3 +66,9 @@ You can use this template with the following command:
 - [Tree Sitter](https://github.com/tree-sitter/tree-sitter)
 - [sonokai](https://github.com/sainnhe/sonokai)
 - [Catppuchin](https://github.com/catppuccin/nvim)
+
+<!-- plugins-end -->
+
+# License
+
+[MIT License](./LICENSE)
