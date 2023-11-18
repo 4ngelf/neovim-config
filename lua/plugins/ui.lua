@@ -100,22 +100,15 @@ return {
     dependencies = { "nvim-web-devicons" },
     main = "dashboard",
     opts = function()
-      local telescope_fd = function(cwd)
-        cwd = cwd or "."
-        vim.fn.chdir(cwd)
-        require("telescope.builtin").find_files({
-          cwd = cwd,
-          find_command = { "rg", "--iglob", "!.git", "--hidden", "--files" },
-        })
-      end
-      local find_files = function()
-        telescope_fd()
-      end
-      local find_nvim = function()
-        return telescope_fd(vim.fn.stdpath("config"))
-      end
-      local find_dots = function()
-        telescope_fd(DOTFILES_DIR)
+      local fd = function(cwd)
+        return function()
+          cwd = cwd or "."
+          vim.fn.chdir(cwd)
+          require("telescope.builtin").find_files({
+            cwd = cwd,
+            find_command = { "rg", "--iglob", "!.git", "--hidden", "--files" },
+          })
+        end
       end
 
       local function footer()
@@ -156,9 +149,14 @@ return {
             -- action can be a function type
             { desc = " update", group = "DashboardUpdate", key = "u", action = "Lazy update" },
             { desc = " profiler", group = "DashboardProfiler", key = "p", action = "Lazy profile" },
-            { desc = " files", group = "DashboardFindfiles", key = "f", action = find_files },
-            { desc = " nvim-conf", group = "DashboardNvimConfig", key = "n", action = find_nvim },
-            { desc = " dotfiles", group = "DashboardDotFiles", key = "d", action = find_dots },
+            { desc = " files", group = "DashboardFindfiles", key = "f", action = fd() },
+            {
+              desc = " nvim-conf",
+              group = "DashboardNvimConfig",
+              key = "n",
+              action = fd(vim.fn.stdpath("config")),
+            },
+            { desc = " dotfiles", group = "DashboardDotFiles", key = "d", action = fd(DOTFILES_DIR) },
           },
           packages = { enable = false },
           project = {
@@ -166,7 +164,7 @@ return {
             limit = 6,
             icon = " ",
             label = " Last projects",
-            action = find_files,
+            action = fd(),
           },
           mru = { limit = 4, icon = " ", label = " Most recent files" },
           footer = footer(),
