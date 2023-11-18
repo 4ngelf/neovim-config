@@ -100,9 +100,23 @@ return {
     dependencies = { "nvim-web-devicons" },
     main = "dashboard",
     opts = function()
-      local find_files = "Telescope find_files find_command=rg,--iglob,!.git,--hidden,--files cwd="
-      local find_nvim = find_files .. vim.fn.stdpath("config")
-      local find_dots = find_files .. DOTFILES_DIR
+      local telescope_fd = function(cwd)
+        cwd = cwd or "."
+        vim.fn.chdir(cwd)
+        require("telescope.builtin").find_files({
+          cwd = cwd,
+          find_command = { "rg", "--iglob", "!.git", "--hidden", "--files" },
+        })
+      end
+      local find_files = function()
+        telescope_fd()
+      end
+      local find_nvim = function()
+        return telescope_fd(vim.fn.stdpath("config"))
+      end
+      local find_dots = function()
+        telescope_fd(DOTFILES_DIR)
+      end
 
       local function footer()
         local quote = require("util.dashboard").get_quote()
