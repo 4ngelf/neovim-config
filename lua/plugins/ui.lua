@@ -65,10 +65,10 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
+    init = function()
+      vim.api.nvim_set_hl(0, "iblContext", { fg = "#5865F2" })
+    end,
     opts = {
-      scope = {
-        highlight = "iblContext",
-      },
       exclude = {
         filetypes = {
           "lspinfo",
@@ -86,7 +86,6 @@ return {
       },
     },
     config = function(_, opts)
-      vim.api.nvim_set_hl(0, "iblContext", { fg = "#5865F2" })
       require("ibl").setup(opts)
     end,
   },
