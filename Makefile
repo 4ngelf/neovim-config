@@ -15,12 +15,23 @@ entry:
 	@echo "Neovim configuration"
 	@echo "dir: ${ROOT_DIR}"
 
+neovim: provider
+	@echo "[make] Installing plugins"
+	${NVIM_EXEC} -n --headless \
+		"+lua require'lazy'.install({wait=true, show=false})" \
+		"+qa!"
+
+	@echo
+	@echo "Neovim installation complete."
+
 provider: python-provider node-provider
 
 python-provider:
 ifndef PYTHON_EXEC
 	$(error "Python not installed or not found on PATH")
 endif
+
+	@echo "[make] Python provider..."
 
 	@rm -rf ${PYTHON_VENV} && mkdir -p ${PYTHON_VENV}
 
@@ -37,6 +48,8 @@ ifndef NPM_EXEC
 	$(error "NPM not installed or not found on PATH")
 endif
 	
+	@echo "[make] Node.js provider..."
+
 	@rm -rf ${NODE_PACKAGE} && mkdir -p ${NODE_PACKAGE}
 
 	@cd ${NODE_PACKAGE} \
@@ -48,13 +61,13 @@ endif
 
 plugin-list:
 	@${NVIM_EXEC} -n --headless \
-		-c "lua plugins={}" \
-		-c "lua for _,p in ipairs(require('lazy').plugins()) do plugins[#plugins+1]='- ['..p.name..']('..string.sub(p.url, 1, -5)..')' end" \
-		-c "lua plugins=vim.fn.sort(plugins)" \
-		-c "lua _start=vim.fn.search('<!-- plugins -->', 'cwn')" \
-		-c "lua _end=vim.fn.search('<!-- plugins-end -->', 'cwn')" \
-		-c "lua vim.api.nvim_buf_set_lines(0, _start, _end - 1, true, plugins)" \
-		-c wq \
+		"+lua plugins={}" \
+		"+lua for _,p in ipairs(require('lazy').plugins()) do plugins[#plugins+1]='- ['..p.name..']('..string.sub(p.url, 1, -5)..')' end" \
+		"+lua plugins=vim.fn.sort(plugins)" \
+		"+lua _start=vim.fn.search('<!-- plugins -->', 'cwn')" \
+		"+lua _end=vim.fn.search('<!-- plugins-end -->', 'cwn')" \
+		"+lua vim.api.nvim_buf_set_lines(0, _start, _end - 1, true, plugins)" \
+		+wq \
 		${ROOT_DIR}/README.md >/dev/null 2>&1
-		
+
 	@echo "Plugin list updated!"
