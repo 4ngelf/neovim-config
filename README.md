@@ -28,14 +28,10 @@ You can use this template with the following command:
 - [curl]()
 - [gzip]()
 - [tar]()
+- [nnn]()
 - [sh]() or [bash]()
-- One of these: xclip, xsel, tmux, waycopy
-
-### Optionals
-
-- [zig]()
-- [fd]()
-- [ripgrep]()
+- One of these: [xclip](), [xsel](), [tmux](), [waycopy]()
+- [fd]() or [ripgrep]()
 - [python]()
 - [node.js]()
 
