@@ -20,20 +20,19 @@ You can use this template with the following command:
 
 ## Dependencies
 
-- [git]()
-- [gnu make]()
-- [gcc]()
-- [unzip]()
-- [wget]()
-- [curl]()
-- [gzip]()
-- [tar]()
-- [nnn]()
-- [sh]() or [bash]()
-- One of these: [xclip](), [xsel](), [tmux](), [waycopy]()
-- [fd]() or [ripgrep]()
-- [python]()
-- [node.js]()
+- [git](https://git-scm.com/)
+- [gnu make](https://www.gnu.org/software/make/)
+- [gcc](https://www.gnu.org/software/gcc/)
+- [unzip](https://packages.debian.org/sid/unzip)
+- [wget](https://www.gnu.org/software/wget/) or [curl](https://curl.se/)
+- [gzip](https://www.gnu.org/software/gzip/)
+- [tar](https://www.gnu.org/software/tar/)
+- [nnn](https://github.com/jarun/nnn)
+- [sh](https://en.wikipedia.org/wiki/Bourne_shell) or [bash](https://www.gnu.org/software/bash/)
+- One of these: [xclip](https://github.com/astrand/xclip), [xsel](https://github.com/kfish/xsel), [tmux](https://github.com/tmux/tmux), [waycopy](https://github.com/noocsharp/wayclip)
+- [fd](https://github.com/sharkdp/fd) or [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [python](https://www.python.org/)
+- [node.js](https://nodejs.org/en)
 
 <!-- dependency-end -->
 
