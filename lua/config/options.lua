@@ -62,6 +62,7 @@ opt.termguicolors = true
 -- others {{{
 opt.formatoptions = "jcroqlnt" -- default: tcqj
 opt.spelllang = { "en" }
+g.editorconfig = false -- do not interfere with editorconfig plugin
 -- }}}
 
 -- providers {{{
