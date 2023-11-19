@@ -22,6 +22,7 @@ return {
         callback = function(event)
           local has_wk, wk = pcall(require, "which-key")
           if not has_wk then
+            vim.api.nvim_err_writeln("[lsp] Which-key module not found.")
             return
           end
 
