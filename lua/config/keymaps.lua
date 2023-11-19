@@ -3,7 +3,9 @@
   Description: Keymap definitions
 ]]
 
-WHICH_KEY_MAPS_GROUPS = {
+local Util = require("util")
+
+local keymaps_groups = {
 
   -- Normal mode commands
   {
@@ -89,5 +91,11 @@ WHICH_KEY_MAPS_GROUPS = {
     [">"] = { ">gv", "Better right indenting" },
   },
 }
+
+Util.lazy_execute("which-key.nvim", function()
+  for _, group in pairs(keymaps_groups) do
+    require("which-key").register(group)
+  end
+end)
 
 -- vim:foldmethod=marker foldmarker={{{,}}} foldlevel=0
