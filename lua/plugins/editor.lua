@@ -208,5 +208,13 @@ return {
     end,
   },
   -- }}}
+
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    opts = {
+      open_mapping = [[<leader>ut]],
+    },
+  },
 }
 -- vim:foldmethod=marker foldmarker={{{,}}} foldlevel=0

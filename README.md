@@ -64,7 +64,6 @@ You can use this template with the following command:
 # Packed Plugins
 
 <!-- plugins -->
-
 - [Comment.nvim](https://github.com/numToStr/Comment.nvim)
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
 - [catppuccin](https://github.com/catppuccin/nvim)
@@ -110,6 +109,7 @@ You can use this template with the following command:
 - [telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim)
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 - [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
+- [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
 - [trouble.nvim](https://github.com/folke/trouble.nvim)
 - [which-key.nvim](https://github.com/folke/which-key.nvim)
 <!-- plugins-end -->
