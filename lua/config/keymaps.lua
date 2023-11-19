@@ -90,6 +90,17 @@ local keymaps_groups = {
     ["<"] = { "<gv", "Better left indenting" },
     [">"] = { ">gv", "Better right indenting" },
   },
+
+  -- terminal mode keymaps
+  {
+    mode = "t",
+    noremap = true,
+    ["<ESC><ESC>"] = { "<C-\\><C-N>", "Enter normal mode" },
+    ["<c-h>"] = { "<CMD>wincmd h<CR>", "go to left window" },
+    ["<c-j>"] = { "<CMD>wincmd j<CR>", "go to lower window" },
+    ["<c-k>"] = { "<CMD>wincmd k<CR>", "go to upper window" },
+    ["<c-l>"] = { "<CMD>wincmd l<CR>", "go to right window" },
+  },
 }
 
 Util.lazy_execute("which-key.nvim", function()
