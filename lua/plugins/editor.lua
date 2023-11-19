@@ -212,8 +212,25 @@ return {
   {
     "akinsho/toggleterm.nvim",
     version = "*",
+    keys = {
+      { "<leader>ut", "<cmd>ToggleTerm direction=float name=vimterm<CR>", desc = "Toggle terminal" },
+    },
     opts = {
-      open_mapping = [[<leader>ut]],
+      close_on_exit = true,
+      shell = vim.o.shell,
+      on_open = function(term)
+        vim.cmd("startinsert!")
+        vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+      end,
+      float_opts = {
+        border = "rounded",
+      },
+      winbar = {
+        enabled = true,
+        name_formatter = function(t)
+          return t.name
+        end,
+      },
     },
   },
 }
