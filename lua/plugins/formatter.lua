@@ -44,6 +44,14 @@ return {
   {
     "editorconfig/editorconfig-vim",
     lazy = false,
+    config = function()
+      vim.api.nvim_create_autocmd("BufReadPost", {
+        desc = "Load editorconfig",
+        callback = function()
+          vim.cmd("EditorConfigReload")
+        end,
+      })
+    end,
   },
   -- }}}
 }
