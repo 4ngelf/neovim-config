@@ -99,6 +99,7 @@ return {
     dependencies = { "nvim-web-devicons" },
     main = "dashboard",
     opts = function()
+      local cwd = vim.fn.getcwd()
       local fd = function(cwd)
         return function()
           cwd = cwd or "."
@@ -117,7 +118,7 @@ return {
           quote[1] or "",
           quote[2] or "",
           "",
-          "cwd:[" .. vim.fn.getcwd() .. "]",
+          "cwd:[" .. cwd .. "]",
         }
       end
 
@@ -148,14 +149,19 @@ return {
             -- action can be a function type
             { desc = " update", group = "DashboardUpdate", key = "u", action = "Lazy update" },
             { desc = " profiler", group = "DashboardProfiler", key = "p", action = "Lazy profile" },
-            { desc = " files", group = "DashboardFindfiles", key = "f", action = fd() },
+            { desc = " files", group = "DashboardFindfiles", key = "f", action = fd(cwd) },
             {
               desc = " nvim-conf",
               group = "DashboardNvimConfig",
               key = "n",
               action = fd(vim.fn.stdpath("config")),
             },
-            { desc = " dotfiles", group = "DashboardDotFiles", key = "d", action = fd(DOTFILES_DIR) },
+            {
+              desc = " dotfiles",
+              group = "DashboardDotFiles",
+              key = "d",
+              action = fd(vim.env.DOTFILES or vim.env.HOME),
+            },
           },
           packages = { enable = false },
           project = {
