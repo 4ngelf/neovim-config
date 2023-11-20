@@ -100,16 +100,6 @@ return {
     main = "dashboard",
     opts = function()
       local cwd = vim.fn.getcwd()
-      local fd = function(cwd)
-        return function()
-          cwd = cwd or "."
-          vim.fn.chdir(cwd)
-          require("telescope.builtin").find_files({
-            cwd = cwd,
-            find_command = { "rg", "--iglob", "!.git", "--hidden", "--files" },
-          })
-        end
-      end
 
       local function footer()
         local quote = require("util.dashboard").get_quote()
@@ -149,18 +139,30 @@ return {
             -- action can be a function type
             { desc = " update", group = "DashboardUpdate", key = "u", action = "Lazy update" },
             { desc = " profiler", group = "DashboardProfiler", key = "p", action = "Lazy profile" },
-            { desc = " files", group = "DashboardFindfiles", key = "f", action = fd(cwd) },
+            {
+              desc = " files",
+              group = "DashboardFindfiles",
+              key = "f",
+              action = function()
+                require("util.telescope").fd(cwd)
+              end,
+            },
             {
               desc = " nvim-conf",
               group = "DashboardNvimConfig",
               key = "n",
-              action = fd(vim.fn.stdpath("config")),
+              action = function()
+                ---@diagnostic disable-next-line:param-type-mismatch
+                require("util.telescope").fd(vim.fn.stdpath("config"))
+              end,
             },
             {
               desc = " dotfiles",
               group = "DashboardDotFiles",
               key = "d",
-              action = fd(vim.env.DOTFILES or vim.env.HOME),
+              action = function()
+                require("util.telescope").fd(vim.env.DOTFILES or vim.env.HOME)
+              end,
             },
           },
           packages = { enable = false },
@@ -169,7 +171,7 @@ return {
             limit = 6,
             icon = " ",
             label = " Last projects",
-            action = fd(),
+            action = require("util.telescope").fd,
           },
           mru = { limit = 4, icon = " ", label = " Most recent files" },
           footer = footer(),
