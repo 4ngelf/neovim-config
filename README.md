@@ -27,6 +27,7 @@ You can use this template with the following command:
 - [wget](https://www.gnu.org/software/wget/) or [curl](https://curl.se/)
 - [gzip](https://www.gnu.org/software/gzip/)
 - [tar](https://www.gnu.org/software/tar/)
+- [chafa](https://hpjansson.org/chafa/) (for image previewing)
 - [nnn](https://github.com/jarun/nnn)
 - [sh](https://en.wikipedia.org/wiki/Bourne_shell) or [bash](https://www.gnu.org/software/bash/)
 - One of these: [xclip](https://github.com/astrand/xclip), [xsel](https://github.com/kfish/xsel), [tmux](https://github.com/tmux/tmux), [waycopy](https://github.com/noocsharp/wayclip)
@@ -64,6 +65,7 @@ You can use this template with the following command:
 # Packed Plugins
 
 <!-- plugins -->
+
 - [Comment.nvim](https://github.com/numToStr/Comment.nvim)
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
 - [catppuccin](https://github.com/catppuccin/nvim)

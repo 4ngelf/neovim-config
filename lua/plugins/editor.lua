@@ -19,12 +19,14 @@ return {
       { "<leader>fa", "<cmd>Telescope<CR>", desc = "Telescope commands" },
       {
         "<leader>ff",
-        "<cmd>Telescope find_files find_command=rg,--iglob,!.git,--hidden,--files<CR>",
+        require("util.telescope").fd,
+        -- "<cmd>Telescope find_files find_command=rg,--iglob,!.git,--hidden,--files<CR>",
         desc = "Find files (.gitignore)",
       },
       {
         "<leader>fF",
-        "<cmd>Telescope find_files find_command=rg,--no-ignore,--hidden,--files<CR>",
+        require("util.telescope").fd_all,
+        -- "<cmd>Telescope find_files find_command=rg,--no-ignore,--hidden,--files<CR>",
         desc = "Find all files",
       },
       { "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Live grep" },
@@ -47,19 +49,7 @@ return {
                 return vim.tbl_contains(image_extensions, extension)
               end
               if is_image(filepath) then
-                local term = vim.api.nvim_open_term(bufnr, {})
-                local function send_output(_, data, _)
-                  for _, d in ipairs(data) do
-                    vim.api.nvim_chan_send(term, d .. "\r\n")
-                  end
-                end
-                local h = vim.api.nvim_win_get_height(opts.winid)
-                local w = vim.api.nvim_win_get_width(opts.winid)
-                vim.fn.jobstart({
-                  "chafa",
-                  "--size=" .. w .. "x" .. h,
-                  filepath,
-                }, { on_stdout = send_output, stdout_buffered = true, pty = true })
+                require("util.telescope").image_previewer()
               else
                 require("telescope.previewers.utils").set_preview_message(
                   bufnr,
