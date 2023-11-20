@@ -1,14 +1,11 @@
 M = {}
 
-M.find_command = { "rg", "--hidden", "--files", "--iglob", "!.git" }
-M.find_all_command = { "rg", "--hidden", "--files", "--no-ignore" }
-
 ---Fuzzy Finder (with .gitignore)
 ---@param path string
 function M.fd(path)
   require("telescope.builtin").fd({
     cwd = path or vim.cmd.pwd(),
-    find_command = M.find_command,
+    find_command = { "rg", "--iglob", "!.git", "--hidden", "--files" },
   })
 end
 
@@ -17,7 +14,7 @@ end
 function M.fd_all(path)
   require("telescope.builtin").fd({
     cwd = path or vim.cmd.pwd(),
-    find_command = M.find_all_command,
+    find_command = { "rg", "--no-ignore", "--hidden", "--files" },
   })
 end
 
@@ -27,6 +24,7 @@ function M.image_previewer(filepath, bufnr, opts)
     require("telescope.previewers.utils").set_preview_message(bufnr, opts.winid, "chafa executable not found.")
     return
   end
+  require("plenary")
 
   local term = vim.api.nvim_open_term(bufnr, {})
   local function send_output(_, data, _)
