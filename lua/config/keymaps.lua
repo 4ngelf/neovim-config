@@ -103,10 +103,8 @@ local keymaps_groups = {
   },
 }
 
-Util.lazy_execute("which-key.nvim", function()
-  for _, group in pairs(keymaps_groups) do
-    require("which-key").register(group)
-  end
-end)
+for _, group in pairs(keymaps_groups) do
+  Util.wk_register(group)
+end
 
 -- vim:foldmethod=marker foldmarker={{{,}}} foldlevel=0
