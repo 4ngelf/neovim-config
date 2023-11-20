@@ -20,14 +20,8 @@ return {
       vim.api.nvim_create_autocmd("LspAttach", {
         desc = "LSP actions",
         callback = function(event)
-          local has_wk, wk = pcall(require, "which-key")
-          if not has_wk then
-            vim.api.nvim_err_writeln("[lsp] Which-key module not found.")
-            return
-          end
-
           local opts = { mode = "n", buffer = event.buf, noremap = true, nowait = true }
-          wk.register({
+          require("util").wk_register({
             ["K"] = { vim.lsp.buf.hover, "Display hover information" },
             ["gk"] = { vim.lsp.buf.signature_help, "Display signature information" },
             ["gd"] = { vim.lsp.buf.definition, "Go to definition" },

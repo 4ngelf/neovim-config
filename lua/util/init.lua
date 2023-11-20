@@ -32,19 +32,12 @@ function M.has(plugin)
 end
 
 ---Register mappings using which-key.nvim
----@param mappings Mappings|any
----@param opts MappingOptions|nil
+---@param mappings table
+---@param opts any
 function M.wk_register(mappings, opts)
   M.lazy_execute("which-key.nvim", function()
     require("which-key").register(mappings, opts)
   end)
-  -- local has_wk, wk = pcall(require, "which-key")
-  -- if not has_wk then
-  --   vim.api.nvim_err_writeln("[lsp] Which-key module not found.")
-  --   return
-  -- end
-  --
-  -- wk.register(mappings, opts)
 end
 
 return M
