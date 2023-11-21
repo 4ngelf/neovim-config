@@ -4,6 +4,8 @@
   Spec-notes: All plugins should load on VeryLazy event.
 ]]
 
+local G = require("config.globals")
+
 return {
   {
     "catppuccin/nvim",
@@ -17,7 +19,7 @@ return {
           light = "latte",
           dark = "frappe",
         },
-        transparent_background = TRANSPARENT_BACKGROUND,
+        transparent_background = G.TRANSPARENT_BACKGROUND,
         integrations = {
           cmp = true,
           dap = { enabled = true, enable_ui = true },
@@ -42,9 +44,9 @@ return {
     config = function()
       require("onedark").setup({
         style = "dark",
-        transparent = TRANSPARENT_BACKGROUND,
+        transparent = G.TRANSPARENT_BACKGROUND,
         lualine = {
-          transparent = TRANSPARENT_BACKGROUND,
+          transparent = G.TRANSPARENT_BACKGROUND,
         },
       })
     end,

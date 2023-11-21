@@ -14,7 +14,7 @@ return {
     config = function()
       require("lualine").setup({
         options = {
-          theme = DEFAULT_COLORSCHEME,
+          theme = require("config.globals").DEFAULT_COLORSCHEME,
         },
       })
     end,
