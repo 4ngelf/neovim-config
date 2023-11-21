@@ -144,7 +144,9 @@ return {
               group = "DashboardFindfiles",
               key = "f",
               action = function()
-                require("util.telescope").fd(cwd)
+                local path = cwd
+                require("util.telescope").fd(path)
+                vim.fn.chdir(path)
               end,
             },
             {
@@ -152,8 +154,10 @@ return {
               group = "DashboardNvimConfig",
               key = "n",
               action = function()
+                local path = vim.fn.stdpath("config")
                 ---@diagnostic disable-next-line:param-type-mismatch
-                require("util.telescope").fd(vim.fn.stdpath("config"))
+                require("util.telescope").fd(path)
+                vim.fn.chdir(path)
               end,
             },
             {
@@ -161,7 +165,9 @@ return {
               group = "DashboardDotFiles",
               key = "d",
               action = function()
-                require("util.telescope").fd(vim.env.DOTFILES or vim.env.HOME)
+                local path = vim.env.DOTFILES or vim.env.HOME
+                require("util.telescope").fd(path)
+                vim.fn.chdir(path)
               end,
             },
           },

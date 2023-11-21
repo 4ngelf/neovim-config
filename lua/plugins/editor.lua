@@ -49,7 +49,7 @@ return {
                 return vim.tbl_contains(image_extensions, extension)
               end
               if is_image(filepath) then
-                require("util.telescope").image_previewer()
+                require("util.telescope").image_previewer(filepath, bufnr, opts)
               else
                 require("telescope.previewers.utils").set_preview_message(
                   bufnr,

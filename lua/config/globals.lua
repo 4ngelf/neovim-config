@@ -3,5 +3,9 @@
   Description: Neovim configuration globals
 ]]
 
-DEFAULT_COLORSCHEME = "catppuccin"
-TRANSPARENT_BACKGROUND = true
+M = {}
+
+M.DEFAULT_COLORSCHEME = "catppuccin"
+M.TRANSPARENT_BACKGROUND = true
+
+return M

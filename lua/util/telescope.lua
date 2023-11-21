@@ -24,7 +24,6 @@ function M.image_previewer(filepath, bufnr, opts)
     require("telescope.previewers.utils").set_preview_message(bufnr, opts.winid, "chafa executable not found.")
     return
   end
-  require("plenary")
 
   local term = vim.api.nvim_open_term(bufnr, {})
   local function send_output(_, data, _)
