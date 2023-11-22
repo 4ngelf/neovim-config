@@ -103,10 +103,11 @@ return {
 
       local function footer()
         local quote = require("util.dashboard").get_quote()
+        local sub_quote = vim.fn.split(quote, "\n") or { quote, "" }
         return {
           "",
-          quote[1] or "",
-          quote[2] or "",
+          sub_quote[1],
+          sub_quote[2],
           "",
           "cwd:[" .. cwd .. "]",
         }
