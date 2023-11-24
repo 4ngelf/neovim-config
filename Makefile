@@ -14,9 +14,11 @@ NODE_PACKAGE:=${ROOT_DIR}/provider/node
 entry:
 	@echo "Neovim configuration"
 	@echo "dir: ${ROOT_DIR}"
+	@echo "run 'make neovim' to install plugins and set providers"
 
-neovim: provider
+neovim:
 	@echo "[make] Installing plugins"
+	make provider
 	${NVIM_EXEC} -n --headless \
 		"+lua require'lazy'.install({wait=true, show=false})" \
 		"+qa!"
@@ -24,7 +26,9 @@ neovim: provider
 	@echo
 	@echo "Neovim installation complete."
 
-provider: python-provider node-provider
+provider:
+	make python-provider
+	make node-provider
 
 python-provider:
 ifndef PYTHON_EXEC

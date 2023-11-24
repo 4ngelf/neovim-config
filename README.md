@@ -7,18 +7,26 @@ This are my neovim configuration files.
 - [tokiory/neovim-boilerplate](https://github.com/tokiory/neovim-boilerplate/)
 - [LazyVim/LazyVim](https://github.com/LazyVim/LazyVim)
 
-## Use it
+# Use it
 
 You can use this template with the following command:
 
 ```bash
-[ -d $HOME/.config/nvim ] && mv $HOME/.config/{nvim,nvim.old}; \
-    git clone https://github.com/4ngelf/neovim-config $HOME/.config/nvim
+[ -d "$HOME/.config/nvim" ] && mv "$HOME/.config/{nvim,nvim.old}"; \
+    git clone https://github.com/4ngelf/neovim-config $HOME/.config/nvim \
+```
+
+## Setup provider
+
+You can install plugins and setup providers automatically with this command
+
+```bash
+cd "$HOME/.config/nvim" && make neovim
 ```
 
 <!-- dependency -->
 
-## Dependencies
+# Dependencies
 
 - [git](https://git-scm.com/)
 - [gnu make](https://www.gnu.org/software/make/)
