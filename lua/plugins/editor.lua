@@ -33,6 +33,7 @@ return {
       { "<leader>fr", "<cmd>Telescope lsp_references<CR>", desc = "Find references" },
       { "<leader>fc", "<cmd>Telescope colorscheme enable_preview=true<CR>", desc = "Preview colorschemes" },
       { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find buffers" },
+      { "<leader>h", "<cmd>Telescope filetypes<CR>", desc = "Change filetype" },
       -- }}}
     },
     config = function()

@@ -67,16 +67,6 @@ local keymaps_groups = {
       "Set neovim clipboard on system",
     },
 
-    ["<leader>hl"] = {
-      function()
-        local bufn = vim.api.nvim_get_current_buf()
-        local language = vim.fn.input("treesitter-highlighting: ")
-        vim.treesitter.stop(bufn)
-        vim.treesitter.start(bufn, language)
-      end,
-      "Change treesitter highlighting",
-    },
-
     ["<leader>X"] = { "<CMD>!$(realpath %)<CR>", "Run current editing file" },
   },
 
