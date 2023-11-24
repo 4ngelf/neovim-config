@@ -13,7 +13,7 @@ You can use this template with the following command:
 
 ```bash
 [ -d "$HOME/.config/nvim" ] && mv "$HOME/.config/{nvim,nvim.old}"; \
-    git clone https://github.com/4ngelf/neovim-config $HOME/.config/nvim \
+    git clone https://github.com/4ngelf/neovim-config $HOME/.config/nvim
 ```
 
 ## Setup provider
