@@ -18,7 +18,7 @@ entry:
 
 neovim:
 	@echo "[make] Installing plugins"
-	make provider
+	@make provider
 	${NVIM_EXEC} -n --headless \
 		"+lua require'lazy'.install({wait=true, show=false})" \
 		"+qa!"
@@ -27,8 +27,9 @@ neovim:
 	@echo "Neovim installation complete."
 
 provider:
-	make python-provider
-	make node-provider
+	@echo "[make] Provider..."
+	@make python-provider
+	@make node-provider
 
 python-provider:
 ifndef PYTHON_EXEC
