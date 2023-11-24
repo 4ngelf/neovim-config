@@ -163,15 +163,23 @@ return {
   {
     "akinsho/toggleterm.nvim",
     version = "*",
-    keys = {
-      { "<leader>ut", "<cmd>ToggleTerm direction=float name=vimterm<CR>", desc = "Toggle terminal" },
-    },
+    event = "VeryLazy",
     opts = {
+      direction = "float",
       close_on_exit = true,
+      start_in_insert = true,
       shell = vim.o.shell,
       on_open = function(term)
+        vim.g.lastterminal = term.id
         vim.cmd("startinsert!")
-        vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+        require("util").wk_register({
+          buffer = term.bufnr,
+          noremap = true,
+          nowait = true,
+          ["<ESC><ESC>"] = { "<cmd>stopinsert<CR>", "Enter normal mode", mode = "t" },
+          ["q"] = { "<cmd>close<CR>", "Close term window", mode = "n", silent = true },
+          ["<C-\\>"] = { "<cmd>close<CR>", "Close term window", mode = "t", nowait = true },
+        })
       end,
       float_opts = {
         border = "rounded",
@@ -183,6 +191,76 @@ return {
         end,
       },
     },
+    config = function(_, opts)
+      local U = require("util")
+      local T = require("toggleterm")
+      local TT = require("toggleterm.terminal")
+      vim.g.lastterminal = 1
+
+      T.setup(opts)
+
+      local function toggle(termid)
+        if termid ~= nil then
+          vim.g.lastterminal = termid
+        end
+        local name = ("T" .. vim.g.lastterminal)
+        T.toggle(vim.g.lastterminal, nil, nil, nil, name)
+      end
+
+      local function sendlines()
+        local terms = TT.get_all(false)
+        local mode = vim.fn.mode()
+        local cmd = ""
+        if mode == "n" then
+          cmd = "ToggleTermSendCurrentLine "
+        elseif mode == "v" then
+          cmd = "ToggleTermSendVisualSelection "
+        elseif mode == "V" then
+          cmd = "ToggleTermSendVisualLines "
+        else
+          return error("Command invoked outside normal mode or selection mode.")
+        end
+
+        if #terms == 0 then
+          return vim.notify("No toggleterms are open yet")
+        end
+        vim.ui.select(terms, {
+          prompt = "Please select a terminal to send lines into:",
+          format_item = function(term)
+            return term.id .. ": " .. term:_display_name()
+          end,
+        }, function(term, _)
+          vim.fn.execute(cmd .. term.id)
+          if not term then
+            return
+          end
+          if term:is_open() then
+            term:focus()
+          else
+            term:open()
+          end
+        end)
+      end
+
+      U.wk_register({
+        --stylua: ignore start
+        mode = "n",
+        noremap = true,
+
+        ["<C-\\>"] = { function() toggle() end, "Last used terminal", },
+        ["<leader>t"] = {
+          name = "+terminal",
+          ["t"] = { "<cmd>TermSelect<CR>", "Term select" },
+          ["1"] = { function() toggle(1) end, "Term 1", },
+          ["2"] = { function() toggle(2) end, "Term 2", },
+          ["3"] = { function() toggle(3) end, "Term 3", },
+          ["4"] = { function() toggle(4) end, "Term 4", },
+
+          ["s"] = { sendlines, "Send current line to selected term", mode = { "n", "x" } },
+        },
+        --stylua: ignore end
+      })
+    end,
   },
   -- }}}
 }
