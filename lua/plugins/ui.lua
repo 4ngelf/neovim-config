@@ -106,8 +106,8 @@ return {
         local sub_quote = vim.fn.split(quote, "\n") or { quote, "" }
         return {
           "",
-          sub_quote[1],
-          sub_quote[2],
+          sub_quote[1] or "",
+          sub_quote[2] or "",
           "",
           "cwd:[" .. cwd .. "]",
         }
