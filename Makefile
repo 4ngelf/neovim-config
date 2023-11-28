@@ -11,12 +11,8 @@ NODE_EXEC:=$(shell command -v node 2>/dev/null)
 NPM_EXEC:=$(shell command -v npm 2>/dev/null)
 NODE_PACKAGE:=${ROOT_DIR}/provider/node
 
-entry:
-	@echo "Neovim configuration"
-	@echo "dir: ${ROOT_DIR}"
-	@echo "run 'make neovim' to install plugins and set providers"
-
 neovim:
+	@echo "[make] Neovim configuration"
 	@echo "[make] Installing plugins"
 	@make provider
 	${NVIM_EXEC} -n --headless \

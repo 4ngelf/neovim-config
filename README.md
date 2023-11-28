@@ -1,6 +1,10 @@
+# Neovim configuration ![Lua version][lua-badge]
+
 ![Preview nvim](https://github.com/4ngelf/neovim-config/assets/32184965/568faae0-ffdf-4e1a-8f55-8179aae04a1a)
 
 This are my neovim configuration files.
+
+[lua-badge]: https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2F4ngelf%2Fneovim-config%2Fmain%2F.luarc.json&query=%24.runtime.version&logo=lua&label=runtime.version&labelColor=%23222222
 
 ## Inspiration
 
@@ -21,7 +25,7 @@ You can use this template with the following command:
 You can install plugins and setup providers automatically with this command
 
 ```bash
-cd "$HOME/.config/nvim" && make neovim
+cd "$HOME/.config/nvim" && make
 ```
 
 <!-- dependency -->
@@ -35,10 +39,13 @@ cd "$HOME/.config/nvim" && make neovim
 - [wget](https://www.gnu.org/software/wget/) or [curl](https://curl.se/)
 - [gzip](https://www.gnu.org/software/gzip/)
 - [tar](https://www.gnu.org/software/tar/)
-- [chafa](https://hpjansson.org/chafa/) (for image previewing)
-- [nnn](https://github.com/jarun/nnn)
 - [sh](https://en.wikipedia.org/wiki/Bourne_shell) or [bash](https://www.gnu.org/software/bash/)
 - One of these: [xclip](https://github.com/astrand/xclip), [xsel](https://github.com/kfish/xsel), [tmux](https://github.com/tmux/tmux), [waycopy](https://github.com/noocsharp/wayclip)
+
+## This configuration dependencies
+
+- [chafa](https://hpjansson.org/chafa/) (for image previewing)
+- [nnn](https://github.com/jarun/nnn)
 - [fd](https://github.com/sharkdp/fd) or [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [python](https://www.python.org/)
 - [node.js](https://nodejs.org/en)
