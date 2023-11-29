@@ -1,10 +1,15 @@
-# Neovim configuration ![Lua version][lua-badge]
+<div align="center">
+  
+# Neovim configuration
+![Lua version][lua-badge]
+[![lazy version][lazy-badge]](https://github.com/folke/lazy.nvim/)
+
+</div>
 
 ![Preview nvim](https://github.com/4ngelf/neovim-config/assets/32184965/568faae0-ffdf-4e1a-8f55-8179aae04a1a)
 
-This are my neovim configuration files.
-
 [lua-badge]: https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2F4ngelf%2Fneovim-config%2Fmain%2F.luarc.json&query=%24.runtime.version&logo=lua&label=runtime.version&labelColor=%23222222
+[lazy-badge]:https://img.shields.io/badge/Package_Manager-Lazy.nvim-blue?labelColor=%23222222
 
 ## Inspiration
 
@@ -32,18 +37,15 @@ cd "$HOME/.config/nvim" && make
 
 # Dependencies
 
+- [sh](https://en.wikipedia.org/wiki/Bourne_shell) or [bash](https://www.gnu.org/software/bash/)
 - [git](https://git-scm.com/)
+- [wget](https://www.gnu.org/software/wget/) or [curl](https://curl.se/)
 - [gnu make](https://www.gnu.org/software/make/)
 - [gcc](https://www.gnu.org/software/gcc/)
-- [unzip](https://packages.debian.org/sid/unzip)
-- [wget](https://www.gnu.org/software/wget/) or [curl](https://curl.se/)
-- [gzip](https://www.gnu.org/software/gzip/)
 - [tar](https://www.gnu.org/software/tar/)
-- [sh](https://en.wikipedia.org/wiki/Bourne_shell) or [bash](https://www.gnu.org/software/bash/)
+- [gzip](https://www.gnu.org/software/gzip/)
+- [unzip](https://packages.debian.org/sid/unzip)
 - One of these: [xclip](https://github.com/astrand/xclip), [xsel](https://github.com/kfish/xsel), [tmux](https://github.com/tmux/tmux), [waycopy](https://github.com/noocsharp/wayclip)
-
-## This configuration dependencies
-
 - [chafa](https://hpjansson.org/chafa/) (for image previewing)
 - [nnn](https://github.com/jarun/nnn)
 - [fd](https://github.com/sharkdp/fd) or [ripgrep](https://github.com/BurntSushi/ripgrep)
