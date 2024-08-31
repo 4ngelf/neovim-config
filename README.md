@@ -6,10 +6,19 @@
 
 </div>
 
+> [!WARNING]
+> **Archive notice:**
+> I am going to rework the configuration using the [rocks.nvim][rocks.nvim] package manager.
+> Since I have this oportunity I also want to make a configuration (or distro) that is
+> platform-agnostic, modular and RPC friendly by following some conventions and standards
+> with the goal set for a more scalable and robust configuration.
+
+[rocks.nvim]: https://github.com/nvim-neorocks/rocks.nvim
+
 ![Preview nvim](https://github.com/4ngelf/neovim-config/assets/32184965/568faae0-ffdf-4e1a-8f55-8179aae04a1a)
 
 [lua-badge]: https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2F4ngelf%2Fneovim-config%2Fmain%2F.luarc.json&query=%24.runtime.version&logo=lua&label=runtime.version&labelColor=%23222222
-[lazy-badge]:https://img.shields.io/badge/Package_Manager-Lazy.nvim-blue?labelColor=%23222222
+[lazy-badge]: https://img.shields.io/badge/Package_Manager-Lazy.nvim-blue?labelColor=%23222222
 
 ## Inspiration
 
@@ -25,9 +34,9 @@ You can use this template with the following command:
     git clone https://github.com/4ngelf/neovim-config $HOME/.config/nvim
 ```
 
-## Setup provider
+## Install providers
 
-You can install plugins and setup providers automatically with this command
+You can install plugins and providers automatically with this command
 
 ```bash
 cd "$HOME/.config/nvim" && make
